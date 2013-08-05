@@ -65,50 +65,15 @@ function parse(data)
     gmaps = window.Googlemap;
     data = data;
     
-    if (data.dierenartsen) {
-        console.log('dierenartsen');
-        parseVets(data.dierenartsen);
-    }
-    
-    if (data.basisscholen) {
-        console.log('basisscholen');
-        parsePrimarySchools(data.basisscholen);
-    }
-    
-    if (data.ziekenhuizen) {
-        console.log('ziekenhuizen');
-        parseHospitals(data.ziekenhuizen);
-    }
-    
-    if (data.bioscopen) {
-        console.log('bioscopen');
-        parseCinemas(data.bioscopen);
-    }
-    
-    if (data.kotzones) {
-        console.log('kotzones');
-         parseStudenthousings(data.kotzones);
-    }
-    
-    if (data.parkings) {
-        console.log('parkings');
-        parseParkings(data.parkings);
-    }
-    
-    if (data.secundairescholen) {
-        console.log('secundairescholen');
-        parseHighSchools(data.secundairescholen);
-    }
-    
-    if (data.gezondheidscentra) {
-        console.log('gezondheidscentra');
-        parseCentra(data.gezondheidscentra);
-    }
-    
-    if (data.bibliotheken) {
-        console.log('bibliotheken'); 
-        parseLibraries(data.bibliotheken);
-    }
+    if (data.dierenartsen)      {parseVets(data.dierenartsen);}
+    if (data.basisscholen)      {parsePrimarySchools(data.basisscholen);}
+    if (data.ziekenhuizen)      {parseHospitals(data.ziekenhuizen);}
+    if (data.bioscopen)         {parseCinemas(data.bioscopen);}
+    if (data.kotzones)          {parseStudenthousings(data.kotzones);}
+    if (data.parkings)          {parseParkings(data.parkings);}
+    if (data.secundairescholen) {parseHighSchools(data.secundairescholen);}
+    if (data.gezondheidscentra) {parseCentra(data.gezondheidscentra);}
+    if (data.bibliotheken)      {parseLibraries(data.bibliotheken);}
     
     if (data.apotheken) {
         console.log('apotheken');
@@ -133,7 +98,7 @@ function parseVets(vets)
     $.each(vets, function(key,val){
         var m = new google.maps.Marker({
             position: new google.maps.LatLng(val.lat,val.long), 
-            map: Googlemap, 
+            map: gmaps, 
             title: val.adres + " " + val.huisnr
         })
         markers.push(m);
@@ -142,16 +107,17 @@ function parseVets(vets)
 
 function parsePrimarySchools(schools)
 {
+    // Clear map
     clearMap();
-    console.log(schools);
     
+    // Check amount of markers, add them afterwards
     $.each(schools, function(key,val){
         var m = new google.maps.Marker({
             position: new google.maps.LatLng(val.lat,val.long), 
             map: gmaps, 
             title: val.roepnaam + ": " + val.straat
         });
-        
+
         var iwContent = '<div id="contentIW">'+
                         '<div id="siteNotice">'+
                         '</div>'+
@@ -164,30 +130,14 @@ function parsePrimarySchools(schools)
                         '</div>'+
                     '</div>';
 
-        infowindow = new google.maps.InfoWindow({
+        var infowindow = new google.maps.InfoWindow({
             content: iwContent
         });
 
-        marker = new google.maps.Marker({
-            position: ghentlocation,
-            map: gmaps,
-            title: val.roepnaam
-        });
-
-        
-//        for (var i = 0; i < m.length; i++) {
-//            var marker = m[i];
-//            google.maps.event.addListener(m, 'click', function () {
-//                //infowindow.setContent(this.html);
-//                infowindow.open(gmaps, this);
-//            });
-//        }
-        
-        
         google.maps.event.addListener(m, 'click', function() {
             infowindow.open(gmaps,m);
         });
-        
+
         markers.push(m);
     })
 }
@@ -200,7 +150,7 @@ function parseHospitals(hospitals)
     $.each(hospitals, function(key,val){
         var m = new google.maps.Marker({
             position: new google.maps.LatLng(val.lat,val.long), 
-            map: Googlemap, 
+            map: gmaps, 
             title: val.naam + ": " + val.straat + " " + val.nr
         })
         markers.push(m);
@@ -215,7 +165,7 @@ function parseCinemas(cinemas)
     $.each(cinemas, function(key,val){
         var m = new google.maps.Marker({
             position: new google.maps.LatLng(val.lat,val.long), 
-            map: Googlemap, 
+            map: gmaps, 
             title: val.naam
         })
         markers.push(m);
@@ -260,7 +210,7 @@ function parseParkings(parkings)
     $.each(parkings, function(key,val){
         var m = new google.maps.Marker({
             position: new google.maps.LatLng(val.lat,val.long), 
-            map: Googlemap, 
+            map: gmaps, 
             title: val.nr_p + ": " + val.naam
         })
         markers.push(m);
@@ -275,7 +225,7 @@ function parseHighSchools(schools)
     $.each(schools, function(key,val){
         var m = new google.maps.Marker({
             position: new google.maps.LatLng(val.lat,val.long), 
-            map: Googlemap, 
+            map: gmaps, 
             title: val.naam + ": " + val.adres
         })
         markers.push(m);
@@ -290,7 +240,7 @@ function parseCentra(centra)
     $.each(centra, function(key,val){
         var m = new google.maps.Marker({
             position: new google.maps.LatLng(val.lat,val.long), 
-            map: Googlemap, 
+            map: gmaps, 
             title: val.naamgzc + ": " + val.adres
         })
         markers.push(m);
@@ -305,7 +255,7 @@ function parseLibraries(libs)
     $.each(libs, function(key,val){
         var m = new google.maps.Marker({
             position: new google.maps.LatLng(val.lat,val.long), 
-            map: Googlemap, 
+            map: gmaps, 
             title: val.afdeling + ": " + val.locatie
         })
         markers.push(m);
@@ -320,7 +270,7 @@ function parseApoth(apoths)
     $.each(apoths, function(key,val){
         var m = new google.maps.Marker({
             position: new google.maps.LatLng(val.lat,val.long), 
-            map: Googlemap, 
+            map: gmaps, 
             title: val.naam + ": " + val.adres
         })
         markers.push(m);
@@ -329,8 +279,4 @@ function parseApoth(apoths)
 
 $(document).ready(function(){
     $('#selData li:first-child input').attr('checked', true);
-    
-    if($('#cbxPS').attr('checked', false)) {
-      clearMap();
-    }
 })

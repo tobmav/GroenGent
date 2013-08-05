@@ -1,14 +1,5 @@
 $(document).ready(function() {
         showOverlays();
-        
-        $("#getData1").select(function() {
-            getData(1);
-        });
-        
-        $('#getData1').click(function() {
-           getData(1);
-        })
-        
         getData(1);
         
         $('.btn-login').click(function() {
