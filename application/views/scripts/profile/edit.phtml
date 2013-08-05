@@ -9,13 +9,9 @@
         <section id="nav-desktop">
             <div id="buttons-header">
                 <a href="<?php echo $this->url(
-                        array('controller'=>'account', 'action' => 'login'),
-                        'default',
-                        true) ?>" class="btn btn-primary btn-login">Aanmelden</a>
-                <a href="<?php echo $this->url(
-                        array('controller'=>'account', 'action' => 'register'),
-                        'default',
-                        true) ?>" class="btn btn-secondary btn-register">Registreer</a>
+                    array('controller'=>'account', 'action' => 'logout'),
+                    'default',
+                    true) ?>" class="btnBlack" alt="Afmelden">Afmelden</a>
                 
              </div>
          </section>
@@ -144,12 +140,12 @@
 
     <?php echo $this->form; ?>
 
-    <img src="<?php echo $this->image ?>"  alt="Your avatar" />
+    <!--<img src="<?php echo $this->image ?>"  alt="Your avatar" />-->
     <a href="<?php echo $this->url(
         array('controller'=> 'profile', 'action'=>'index'),
         'default',
-        true) ?>">Cancel</a>
+        true) ?>" class="btnBlack">Annuleer</a>
     <a href="<?php echo $this->url(
         array('controller'=>'account', 'action' => 'logout'),
         'default',
-        true) ?>">Afmelden</a>
+        true) ?>" class="btnBlack">Afmelden</a>

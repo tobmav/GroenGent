@@ -275,14 +275,10 @@ header h1 {
 .txtForgot:hover, .txtForgot:active, .txtForgot:focus {background: none;}
 
 #view-register {
-	position: absolute;
 	width: 300px;
-	height: 601px;
+        margin: 0 auto;
 	background: #fff;
-	margin-left: -150px;
-	left: 50%;
-	margin-top: -93px;
-	top: 15%;
+	margin-top: 120px;
 }
 
 input#register-upload {
@@ -354,6 +350,21 @@ footer {
 	z-index: 98;
 }
 
+/* Common class */
+
+.btnBlack {
+    color: #fff;
+    background: #000;
+    padding: 8px 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 /* Hide tablet/mobile css */
 
 #nav-tablet, #nav-mobile {visibility: hidden;}
+
+#contentIW {
+    width: 300px !important;
+    height: 100px;
+}

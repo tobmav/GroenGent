@@ -1,6 +1,10 @@
-var Googlemap;
+var gmaps;
 var data;
+var i = 0;
+var m = [];
+var marker = [];
 var markers = [];
+var infowindow = null;
 var kotzones = [];
 var latlngs = [];
 
@@ -58,7 +62,7 @@ function parseJson(url){
 
 function parse(data)
 {
-    Googlemap = window.Googlemap;
+    gmaps = window.Googlemap;
     data = data;
     
     if (data.dierenartsen) {
@@ -139,44 +143,53 @@ function parseVets(vets)
 function parsePrimarySchools(schools)
 {
     clearMap();
-    markers =[];
     console.log(schools);
+    
     $.each(schools, function(key,val){
         var m = new google.maps.Marker({
             position: new google.maps.LatLng(val.lat,val.long), 
             map: gmaps, 
             title: val.roepnaam + ": " + val.straat
-        })
+        });
+        
+        var iwContent = '<div id="contentIW">'+
+                        '<div id="siteNotice">'+
+                        '</div>'+
+                        '<h2 id="firstHeading" class="firstHeading">' + val.roepnaam + '</h2>'+
+                        '<div id="bodyContent">'+
+                            '<p>' + val.aanbod + '</p>'+
+                            '<p>' + val.straat + '</p>'+
+                            '<p>' + val.net + '</p>'+
+                            '<a href="https://www.google.com/maps/preview#!q=' + val.lat + '%2C+' + val.long + '&data=!4m10!1m9!4m8!1m3!1d46175175!2d16.9848501!3d0.2136714!3m2!1i1920!2i1085!4f13.1" title="" target="_blank">Navigeer</a>'
+                        '</div>'+
+                    '</div>';
+
+        infowindow = new google.maps.InfoWindow({
+            content: iwContent
+        });
+
+        marker = new google.maps.Marker({
+            position: ghentlocation,
+            map: gmaps,
+            title: val.roepnaam
+        });
+
+        
+//        for (var i = 0; i < m.length; i++) {
+//            var marker = m[i];
+//            google.maps.event.addListener(m, 'click', function () {
+//                //infowindow.setContent(this.html);
+//                infowindow.open(gmaps, this);
+//            });
+//        }
+        
+        
+        google.maps.event.addListener(m, 'click', function() {
+            infowindow.open(gmaps,m);
+        });
+        
         markers.push(m);
     })
-    
-    var iwContent = '<div id="contentIW">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h2 id="firstHeading" class="firstHeading">Uluru</h2>'+
-            '<div id="bodyContent">'+
-                '<h2><b>Title</b></h2>'+
-                '<p>Text</p>'+
-                '<p>And some final text.</p>'+
-            '</div>'+
-        '</div>';
-
-    var infowindow = new google.maps.InfoWindow({
-        content: iwContent
-    });
-
-    var m = new google.maps.Marker({
-        position: ghentlocation,
-        map: gmaps,
-        title: "Title"
-    });
-
-    google.maps.event.addListener(m, 'click', function() {
-        infowindow.open(gmaps,m);
-    });
-    
-    // Force marker placement
-    marker.setMap(gmaps);
 }
 
 function parseHospitals(hospitals)
@@ -236,14 +249,6 @@ function parseStudenthousings(sth)
 
  z.setMap(Googlemap);
  kotzones.push(z);
- 
-//        v
-//        ar m = new google.maps.Marker({
-//            position: new google.maps.LatLng(val.lat,val.long), 
-//            map: Googlemap, 
-//            title: val.naam
-//        })
-//        markers.push(m);
     })  
 }
 

@@ -23,15 +23,15 @@ class ErrorController extends Zend_Controller_Action
                 break;
             default:
                 // application error
-                print_r($this->getResponse());
+                //print_r($this->getResponse());
                 $this->getResponse()->setHttpResponseCode(500);
                 $priority = Zend_Log::CRIT;
                 $this->view->error_code = $this->getResponse()->getHttpResponseCode();
                 $this->view->message = 'Application error';
                 if ($log = $this->getLog()) {
-                $log->log($this->view->message, $priority, $errors->exception);
-                $log->log('Request Parameters', $priority, $errors->request->getParams());
-                $this->renderScript('error/error_500.phtml');
+                    $log->log($this->view->message, $priority, $errors->exception);
+                    $log->log('Request Parameters', $priority, $errors->request->getParams());
+                    $this->renderScript('error/error_500.phtml');
                 }
                 // conditionally display exceptions
                 if ($this->getInvokeArg('displayExceptions') == true) {
