@@ -13,7 +13,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->doctype('HTML5'); 
         $view->headMeta()
              ->setCharset('utf-8')
-             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+             ->appendName('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
         ;
 
         $view->headTitle($view->title, 'PREPEND')
@@ -29,6 +29,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
              ->appendStylesheet($view->baseUrl('_styles/css/_libs/bootstrap/bootstrap.css'), 'all and (min-width: 481px) and (max-width: 1024px)')
              ->appendStylesheet($view->baseUrl('_styles/css/mobile.css'), 'all and (max-width: 481px)')
              ->appendStylesheet($view->baseUrl('_styles/css/_libs/jqmobile/jquery.mobile-1.2.0.min.css'), 'all and (max-width: 481px)')
+             ->appendStylesheet($view->baseUrl("http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'"))
              
         ;
         $view->headScript()
@@ -44,6 +45,4 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
              ->appendFile($view->baseUrl('_scripts/js/loadData.js'))
         ;
     }
-
 }
-

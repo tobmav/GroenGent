@@ -2,7 +2,6 @@
 
 class AccountController extends Zend_Controller_Action
 {
-
     protected $_auth = null;
 
     public function init()
@@ -24,8 +23,8 @@ class AccountController extends Zend_Controller_Action
                 $values = $form->getValues();
                 $user = new Application_Model_User($values);
                 
-                $adapter = new statGhent_Auth_Adapter_User($user->getUsername(),
-                                                      $user->getPassword());
+                $adapter = new statGhent_Auth_Adapter_User( $user->getUsername(),
+                                                            $user->getPassword());
                                                             
                 $this->_auth->authenticate($adapter);
 
@@ -43,7 +42,6 @@ class AccountController extends Zend_Controller_Action
             }
         }
         $view->form = $form;
-        
     }
 
     public function registerAction()
@@ -57,10 +55,11 @@ class AccountController extends Zend_Controller_Action
 
         if ($request->isPost() ) {
             
-            $values = $form->getValues();
-            $form->populate($values);
-            $val = $this->getRequest()->getPost();
-                if ($form->isValid( $request->getPost() )) {
+            //$values = $form->getValues();
+            //$form->populate($values);
+            $val = $request->getPost();
+            
+                if ($form->isValid($val)) {
                 $user = new Application_Model_User();
                 $user->setUsername($val["username"]);
                 $user->setPasswordraw($val["passwordraw"]);
@@ -74,9 +73,7 @@ class AccountController extends Zend_Controller_Action
                 $createdd = $createdd->format('Y-m-d H:i:s');
                 $user->setCreateddate( $createdd );
                 $user->setActivationkey(statGhent_Utility::randomString(64) );
-                
-                
-
+              
                 if($form->image->isUploaded())
                 {
                     $image = new Application_Model_Image();
@@ -93,7 +90,6 @@ class AccountController extends Zend_Controller_Action
                     
                     //NOT WORKING WHEN ONLY RENAME FILTER... NEITHER IS NOW
                     $form->image->addFilter('Rename',$new_image_name, true);
-                    
                     
                     try {
                         
@@ -115,16 +111,16 @@ class AccountController extends Zend_Controller_Action
                             $html = "<table style='width:60%; margin-left:5%'>
 
                                             <tr>
-                                                    <th colspan='5' height='100px;' style='border-bottom:1px solid #3a3a3a;'>ACTIVATION MAIL STATGHENT</th>
+                                                    <th colspan='5' height='100px;' style='border-bottom:1px solid #3a3a3a;'>ACTIVATION MAIL GROENGENT</th>
 
                                             </tr>
                                             <tr style='height:80px;'>
 
-                                                <td colspan='5' style='font:Verdana, Geneva, sans-serif; font-weight:bold;font-size:24px;'>Welcome " . $user->getUsername() . " to statGhent!</td>
+                                                <td colspan='5' style='font:Verdana, Geneva, sans-serif; font-weight:bold;font-size:24px;'>Welkom " . $user->getUsername() . " bij statGhent!</td>
                                             </tr>
                                             <tr style='height:40px;'>
 
-                                                <td colspan='5'><a href='http://localhost/statGhent/public/account/activate?id=". $user->getId() ."&key=". $user->getActivationkey() ."' style='color:#3e3e3e; text-decoration:underline;'>Activate your account now!</a></td>
+                                                <td colspan='5'><a href='http://localhost/GroenGent/public/account/activate?id=". $user->getId() ."&key=". $user->getActivationkey() ."' style='color:#3e3e3e; text-decoration:underline;'>Activate your account now!</a></td>
                                             </tr>
                                             <tr>
 
@@ -132,7 +128,7 @@ class AccountController extends Zend_Controller_Action
                                             </tr>
                                             <tr>
 
-                                                <td colspan='5'>http://localhost/statGhent/public/account/activate?id=". $user->getId() ."&key=". $user->getActivationkey()."</td>
+                                                <td colspan='5'>http://localhost/GroenGent/public/account/activate?id=". $user->getId() ."&key=". $user->getActivationkey()."</td>
                                             </tr>
                                             </table>
                             ";
@@ -143,7 +139,7 @@ class AccountController extends Zend_Controller_Action
                             $mail->addTo($user->getEmail());
                             $mail->setSubject('statGhent | Activationlink');
                             $mail->send($transport);
-                            return $this->redirect('account/index');
+                            return $this->redirect('account/login');
                         }
                         else {
                             throw new Zend_Exception("file not uploaded or mail kapoet");
@@ -162,14 +158,16 @@ class AccountController extends Zend_Controller_Action
                             $config = array('auth' => 'login',
                                             'username' => 'statGhent@gmail.com',
                                             'password' => 'statGhent1991',
-                                            'ssl' => 'tls');
+                                            'ssl' => 'ssl',
+                                            'port' => '465');
+                            // tls 587
 
                             $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
                                                         
                             $html = "<table style='width:60%; margin-left:5%'>
 
                                             <tr>
-                                                    <th colspan='5' height='100px;' style='border-bottom:1px solid #3a3a3a;'>ACTIVATION MAIL STATGHENT</th>
+                                                    <th colspan='5' height='100px;' style='border-bottom:1px solid #3a3a3a;'>ACTIVATION MAIL GROENGENT</th>
 
                                             </tr>
                                             <tr style='height:80px;'>
@@ -178,7 +176,7 @@ class AccountController extends Zend_Controller_Action
                                             </tr>
                                             <tr style='height:40px;'>
 
-                                                <td colspan='5'><a href='http://localhost/statGhent/public/account/activate?id=". $user->getId() ."&key=". $user->getActivationkey() ."' style='color:#3e3e3e; text-decoration:underline;'>Activate your account now!</a></td>
+                                                <td colspan='5'><a href='http://localhost/GroenGent/public/account/activate?id=". $user->getId() ."&key=". $user->getActivationkey() ."' style='color:#3e3e3e; text-decoration:underline;'>Activate your account now!</a></td>
                                             </tr>
                                             <tr>
 
@@ -186,7 +184,7 @@ class AccountController extends Zend_Controller_Action
                                             </tr>
                                             <tr>
 
-                                                <td colspan='5'>http://localhost/statGhent/public/account/activate?id=". $user->getId() ."&key=". $user->getActivationkey()."</td>
+                                                <td colspan='5'>http://localhost/GroenGent/public/account/activate?id=". $user->getId() ."&key=". $user->getActivationkey()."</td>
                                             </tr>
                                             </table>
                             ";
@@ -198,12 +196,12 @@ class AccountController extends Zend_Controller_Action
                             $mail->setSubject('statGhent | Activationlink');
                             $mail->send($transport);
                             
-                            return $this->redirect('account/index');
+                            return $this->redirect('account/login');
                 }
                 
             }
             else { 
-               throw new Zend_Exception("form not valid");
+                print_r($val);
             }
         }
         $view->form = $form;
@@ -228,7 +226,7 @@ class AccountController extends Zend_Controller_Action
                     $activationdate = $activationdate->format('Y-m-d H:i:s');
                     $user->setActivationdate($activationdate);
                     $modifieddate = new DateTime('now', new DateTimeZone('UTC'));
-                    $modifieddate = $createdd->format('Y-m-d H:i:s');
+                    $modifieddate = $modifieddate->format('Y-m-d H:i:s');
                     $user->setModifieddate($modifieddate);
                     $userM->save($user);
                     return $this->redirect('account/login');
@@ -242,9 +240,7 @@ class AccountController extends Zend_Controller_Action
             {
                 throw new Zend_Exception($e);
             }
-            
         }
-        
     }
 
     public function forgotpasswordAction()
@@ -282,7 +278,7 @@ class AccountController extends Zend_Controller_Action
                             $html = "<table style='width:60%; margin-left:5%'>
 
                                 <tr>
-                                        <th colspan='5' height='100px;' style='border-bottom:1px solid #3a3a3a;'>FORGOT PASSWORD MAIL STATGHENT</th>
+                                        <th colspan='5' height='100px;' style='border-bottom:1px solid #3a3a3a;'>FORGOT PASSWORD MAIL GROENGENT</th>
 
                                 </tr>
                                 <tr style='height:80px;'>
@@ -320,10 +316,4 @@ class AccountController extends Zend_Controller_Action
 
         return $this->redirect('index');
     }
-
-
 }
-
-
-
-

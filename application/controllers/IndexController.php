@@ -6,7 +6,6 @@ class IndexController extends Zend_Controller_Action
     public function init()
     {
         $this->_auth = Zend_Auth::getInstance();
-        //Zend_Debug::dump(statGhent_Utility::hash('test', 'sha1'));die(); 
     }
 
     public function indexAction()
@@ -25,12 +24,6 @@ class IndexController extends Zend_Controller_Action
         catch (Exception $e)
         {
             $view->assign('loggedin',0);
-        }
-        
-        
-        
-    }
-
-
+        }   
+	}
 }
-

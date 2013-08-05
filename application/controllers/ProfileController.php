@@ -25,10 +25,20 @@ class ProfileController extends Zend_Controller_Action
         $view->assign('website',$user->getWebsite());
         
         $imgM = new Application_Model_ImageMapper();
-        $img = new Application_Model_Image($imgM->read($user->getImage()));
         
-        $view->assign('image',$img->getImage());
-        $view->assign('mime',$img->getMimetype());
+        if ($user->getImage() != null) {
+            $image = $imgM->read($user->getImage());
+            $img = new Application_Model_Image();
+        
+            $view->assign('image',$img->getImage());
+            $view->assign('mime',$img->getMimetype());
+            $view->assign('hasimage',true);
+        }
+        
+        else {
+            $view->assign('hasimage',false);
+        }
+        
         $view->assign('path',APPLICATION_PATH);
     }
 
@@ -39,7 +49,6 @@ class ProfileController extends Zend_Controller_Action
         $form->getElement("passwordraw")->clearValidators()->setAllowEmpty(true)->setRequired(false);
         $form->getElement("passwordcheck")->clearValidators()->setAllowEmpty(true)->setRequired(false);
         $form->removeElement('username');
-        
         
         $view = $this->view;
         $view->title = 'Edit Profile';
@@ -60,10 +69,9 @@ class ProfileController extends Zend_Controller_Action
                 Zend_Debug::dump($img);
                 $users['image'] = $img->getImage();
                 
-                $i = "http://localhost/statghent/public/images/" . $img->getImage();
+                $i = "http://localhost/GroenGent/public/images/" . $img->getImage();
                 $view->assign('image', $i);
             }
-            
             
             $users['username'] = $user->getUsername();
             $users['firstname'] = $user->getFirstname();
@@ -80,9 +88,6 @@ class ProfileController extends Zend_Controller_Action
             return $this->redirect('account/login/');
         }
         
-        
-        
-
         $request = $this->getRequest();
 
         if ($request->isPost() ) 
@@ -126,7 +131,6 @@ class ProfileController extends Zend_Controller_Action
                         //NOT WORKING WHEN ONLY RENAME FILTER... NEITHER IS NOW
                         $form->image->addFilter('Rename',$new_image_name, true);
 
-
                         try {
 
                             if ($form->image->receive()) {
@@ -156,16 +160,8 @@ class ProfileController extends Zend_Controller_Action
                         return $this->redirect('profile/index');
                     }
                 }
-
-            
-            
             }
-        
-        
         }
         $view->form = $form;
     }
 }
-
-
-

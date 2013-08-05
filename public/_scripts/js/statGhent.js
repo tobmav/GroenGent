@@ -1,18 +1,28 @@
 $(document).ready(function() {
-	showOverlays();
+        showOverlays();
+        
+        $("#getData1").select(function() {
+            getData(1);
+        });
+        
+        $('#getData1').click(function() {
+           getData(1);
+        })
+        
+        getData(1);
         
         $('.btn-login').click(function() {
 		$('#overlay').clearQueue().fadeIn('fast');
 		$('#view-register, #view-disclaimer').clearQueue().hide();
 		$('#view-login').clearQueue().delay(100).fadeIn();
 	});
-//	
+	
 	$('.btn-register').click(function() {
 		$('#overlay').clearQueue().fadeIn('fast');
 		$('#view-login, #view-disclaimer').clearQueue().hide();
 		$('#view-register').clearQueue().delay(100).fadeIn();
 	});
-//	
+	
 	$('#view-login .closeBtn, #view-register .closeBtn, #view-disclaimer .closeBtn, #view-forgot .closeBtn').click(function(){
 		$('#overlay').clearQueue().fadeOut('fast');
 		$('#view-login, #view-register, #view-disclaimer, #view-forgot').clearQueue().delay(100).fadeOut();
@@ -75,5 +85,8 @@ function showOverlays() {
         {
             $("#overlay").show();
         }
-	
+}
+
+function clearCbx () {
+    $('#selData input').attr('checked', false);
 }

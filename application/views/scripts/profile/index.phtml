@@ -1,22 +1,178 @@
+<header>
+		<div id="logo">
+        	<h1><a class="logo" href="<?php echo $this->url(
+                        array('controller'=>'index', 'action' => 'index'),
+                        'default',
+                        true) ?>" title="GroenGent Home">GroenGent</a></h1>
+		</div>
+        <?php if($this->loggedin == 0):?>
+        <section id="nav-desktop">
+            <div id="buttons-header">
+                <a href="<?php echo $this->url(
+                        array('controller'=>'account', 'action' => 'login'),
+                        'default',
+                        true) ?>" class="btn btn-primary btn-login">Aanmelden</a>
+                <a href="<?php echo $this->url(
+                        array('controller'=>'account', 'action' => 'register'),
+                        'default',
+                        true) ?>" class="btn btn-secondary btn-register">Registreer</a>
+                
+             </div>
+         </section>
+         
+        <section id="nav-tablet">
+            <div id="buttons-header-tablet">
+                <a href="<?php echo $this->url(
+                        array('controller'=>'account', 'action' => 'login'),
+                        'default',
+                        true) ?>" class="btn btn-login">Login</a>
+                <a href="<?php echo $this->url(
+                        array('controller'=>'account', 'action' => 'register'),
+                        'default',
+                        true) ?>" class="btn btn-register">Registreer</a>
+                
+             </div>
+         </section>
+         
+         <section id="nav-mobile">         
+         	<a href="#" title="Navigation menu" data-icon="grid" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="menuBtn ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                <span class="ui-btn-inner">
+                    <span class="ui-btn-text"></span>
+                    <span class="ui-icon ui-icon-grid ui-icon-shadow" style="margin: -4px 0 0 -4px;"></span>
+                </span>
+            </a>
+         
+         <div id="buttons-header-mobile">
+         		<a href="<?php echo $this->url(
+                            array('controller'=>'account', 'action' => 'login'),
+                            'default',
+                        true) ?>" data-icon="check" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="loginMobileBtn" class="btn btn-login ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                	<span class="ui-btn-inner">
+                    	<span class="ui-btn-text">Aanmelden</span>
+                        <span class="ui-icon ui-icon-check ui-icon-shadow"></span>
+                    </span>
+                </a>
+                
+                <a href="<?php echo $this->url(
+                        array('controller'=>'account', 'action' => 'register'),
+                        'default',
+                        true) ?>" data-icon="edit" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="registerMobileBtn" class="btn btn-register ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                	<span class="ui-btn-inner">
+                    	<span class="ui-btn-text">Registreer</span>
+                        <span class="ui-icon ui-icon-edit ui-icon-shadow"></span>
+                    </span>
+                </a>
+                
+                <a href="#" title="Disclaimer" id="mobileDisclaimerBtn" data-icon="info" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="#styleMobile" class="btn btn-disclaimer ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                    <span class="ui-btn-inner">
+                        <span class="ui-btn-text">Disclaimer</span>
+                        <span class="ui-icon ui-icon-info ui-icon-shadow"></span>
+                    </span>
+                </a>
+             </div>
+         </section>
+    <?php else: ?>
+        <section id="nav-desktop">
+            <div id="buttons-header">
+                <a href="<?php echo $this->url(
+                        array('controller'=>'profile'),
+                        'default',
+                        true) ?>" class="btn btn-primary btn-profile"><?php echo "Hello " . $this->username; ?></a>
+                <a href="<?php echo $this->url(
+                        array('controller'=>'account', 'action' => 'logout'),
+                        'default',
+                        true) ?>" class="btn btn-primary btn-profile">Afmelden</a>
+                
+             </div>
+         </section>
+         
+        <section id="nav-tablet">
+            <div id="buttons-header-tablet">
+                <a href="<?php echo "Hello " . $this->url(
+                        array('controller'=>'profile'),
+                        'default',
+                        true) ?>" class="btn btn-login"><?php echo "Hello " . $this->username; ?></a>
+                <a href="<?php echo $this->url(
+                        array('controller'=>'account', 'action' => 'logout'),
+                        'default',
+                        true) ?>" class="btn btn-register">Afmelden</a>
+                
+                
+             </div>
+         </section>
+         
+         <section id="nav-mobile">         
+         	<a href="#" title="Navigation menu" data-icon="grid" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="menuBtn ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                <span class="ui-btn-inner">
+                    <span class="ui-btn-text"></span>
+                    <span class="ui-icon ui-icon-grid ui-icon-shadow" style="margin: -4px 0 0 -4px;"></span>
+                </span>
+            </a>
+         
+         <div id="buttons-header-mobile">
+         		<a href="<?php echo "Hallo " . $this->url(
+                        array('controller'=>'profile'),
+                        'default',
+                        true) ?>" data-icon="check" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="profileMobileBtn" class="btn btn-profile ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                	<span class="ui-btn-inner">
+                    	<span class="ui-btn-text"><?php echo "Hallo " . $this->username; ?></span>
+                        <span class="ui-icon ui-icon-check ui-icon-shadow"></span>
+                    </span>
+                </a>
+         		<a href="<?php echo $this->url(
+                        array('controller'=>'account', 'action' => 'logout'),
+                        'default',
+                        true) ?>" data-icon="check" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="profileMobileBtn" class="btn btn-profile ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                	<span class="ui-btn-inner">
+                    	<span class="ui-btn-text">Afmelden</span>
+                        <span class="ui-icon ui-icon-check ui-icon-shadow"></span>
+                    </span>
+                </a>
+                
+                             
+                <a href="#" title="Disclaimer" id="mobileDisclaimerBtn" data-icon="info" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="#styleMobile" class="btn btn-disclaimer ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                    <span class="ui-btn-inner">
+                        <span class="ui-btn-text">Disclaimer</span>
+                        <span class="ui-icon ui-icon-info ui-icon-shadow"></span>
+                    </span>
+                </a>
+             </div>
+         </section>
+    <?php endif; ?>
+    
+    </header>
 
-        <h1>Welcome <?php echo $this->username ?></h1>
-        <h2><?php echo $this->firstname ?> <?php echo $this->surname ?></h2>
-        <h2>Email: <a href="mailto:<?php echo $this->email ?>"><?php echo $this->email ?></a></h2>
-        <h2><?php echo ($this->sex=='m'?"Man":"Woman") ;?></h2>
-        <?php if (!empty($this->description)):?>
-            <p><strong>About <?php echo $this->firstname ?>:</strong> <?php echo $this->description ?></p>
-        <?php endif; ?> 
-        <?php if (!empty($this->website)):?>
-            <a href="<?php echo $this->website; ?>"><?php echo $this->website; ?></a>
-        <?php endif; ?> 
-        
-        <img src="http://localhost:8888/statGhent/public/images/<?php echo $this->image ;?>" alt="<?php echo $this->username ?>" />
-        <a href="<?php echo $this->url(
-            array('controller'=>'profile', 'action' => 'edit'),
-            'default',
-            true) ?>">Edit Profile</a>
-        <a href="<?php echo $this->url(
-            array('controller'=>'account', 'action' => 'logout'),
-            'default',
-            true) ?>">Logout</a>
-        
+<div id="container">
+        <section id="content-profile">
+
+<h1>Welcome <?php echo $this->username ?></h1>
+<h2><?php echo $this->firstname ?> <?php echo $this->surname ?></h2>
+<h2>Email: <a href="mailto:<?php echo $this->email ?>"><?php echo $this->email ?></a></h2>
+<h2><?php echo ($this->sex=='m'?"Man":"Vrouw") ;?></h2>
+
+    <?php if (!empty($this->description)):?>
+    <p><strong>About <?php echo $this->firstname ?>:</strong> <?php echo $this->description ?></p>
+<?php endif; ?> 
+
+<!-- Btn Homepage -->
+<?php if (!empty($this->website)):?>
+    <a href="<?php echo $this->website; ?>"><?php echo $this->website; ?></a>
+<?php endif; ?> 
+
+<?php if ($this->hasimage):?>
+    <img src="http:///GroenGent/public/images/<?php echo $this->image ;?>" alt="<?php echo $this->username ?>" />
+<?php endif; ?>
+
+<!-- Btn Edit -->
+<a href="<?php echo $this->url(
+    array('controller'=>'profile', 'action' => 'edit'),
+    'default',
+    true) ?>">Wijzig profiel</a>
+
+<!-- Btn Logout -->
+<a href="<?php echo $this->url(
+    array('controller'=>'account', 'action' => 'logout'),
+    'default',
+    true) ?>">Afmelden</a>
+        </section>
+</div>

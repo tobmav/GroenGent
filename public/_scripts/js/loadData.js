@@ -3,9 +3,6 @@ var data;
 var markers = [];
 var kotzones = [];
 var latlngs = [];
-$(document).ready(function(){
-    
-})
 
 function getData(el){
     var url = window.location.pathname;
@@ -13,9 +10,6 @@ function getData(el){
     var tags = url.split('/');
    
     if (tags[tags.length-1] == "public") {
-        
-       
-        
         switch (el) {
             case 1:
                     parseJson("http://data.appsforghent.be/poi/basisscholen.json");
@@ -51,8 +45,6 @@ function getData(el){
             default:
                 break;
         }
-
-    
     }
 }
 
@@ -63,6 +55,7 @@ function parseJson(url){
     var b = document.getElementsByTagName('body')[0];
     b.appendChild(s);
 }
+
 function parse(data)
 {
     Googlemap = window.Googlemap;
@@ -72,40 +65,47 @@ function parse(data)
         console.log('dierenartsen');
         parseVets(data.dierenartsen);
     }
+    
     if (data.basisscholen) {
         console.log('basisscholen');
         parsePrimarySchools(data.basisscholen);
     }
+    
     if (data.ziekenhuizen) {
         console.log('ziekenhuizen');
-        parsehospitals(data.ziekenhuizen);
+        parseHospitals(data.ziekenhuizen);
     }
+    
     if (data.bioscopen) {
         console.log('bioscopen');
-                parseCinemas(data.bioscopen);
-
+        parseCinemas(data.bioscopen);
     }
+    
     if (data.kotzones) {
         console.log('kotzones');
          parseStudenthousings(data.kotzones);
     }
+    
     if (data.parkings) {
         console.log('parkings');
         parseParkings(data.parkings);
     }
+    
     if (data.secundairescholen) {
         console.log('secundairescholen');
         parseHighSchools(data.secundairescholen);
     }
+    
     if (data.gezondheidscentra) {
         console.log('gezondheidscentra');
         parseCentra(data.gezondheidscentra);
     }
+    
     if (data.bibliotheken) {
-        console.log('bibliotheken');
-        
+        console.log('bibliotheken'); 
         parseLibraries(data.bibliotheken);
     }
+    
     if (data.apotheken) {
         console.log('apotheken');
         parseApoth(data.apotheken);
@@ -133,9 +133,9 @@ function parseVets(vets)
             title: val.adres + " " + val.huisnr
         })
         markers.push(m);
-    })
-    
+    }) 
 }
+
 function parsePrimarySchools(schools)
 {
     clearMap();
@@ -144,15 +144,42 @@ function parsePrimarySchools(schools)
     $.each(schools, function(key,val){
         var m = new google.maps.Marker({
             position: new google.maps.LatLng(val.lat,val.long), 
-            map: Googlemap, 
+            map: gmaps, 
             title: val.roepnaam + ": " + val.straat
         })
         markers.push(m);
     })
     
+    var iwContent = '<div id="contentIW">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h2 id="firstHeading" class="firstHeading">Uluru</h2>'+
+            '<div id="bodyContent">'+
+                '<h2><b>Title</b></h2>'+
+                '<p>Text</p>'+
+                '<p>And some final text.</p>'+
+            '</div>'+
+        '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+        content: iwContent
+    });
+
+    var m = new google.maps.Marker({
+        position: ghentlocation,
+        map: gmaps,
+        title: "Title"
+    });
+
+    google.maps.event.addListener(m, 'click', function() {
+        infowindow.open(gmaps,m);
+    });
     
+    // Force marker placement
+    marker.setMap(gmaps);
 }
-function parsehospitals(hospitals)
+
+function parseHospitals(hospitals)
 {
     clearMap();
     markers =[];
@@ -165,9 +192,8 @@ function parsehospitals(hospitals)
         })
         markers.push(m);
     })
-    
-    
 }
+
 function parseCinemas(cinemas)
 {
     clearMap();
@@ -181,9 +207,8 @@ function parseCinemas(cinemas)
         })
         markers.push(m);
     })
-    
-    
 }
+
 function parseStudenthousings(sth)
 {
     clearMap();
@@ -219,14 +244,9 @@ function parseStudenthousings(sth)
 //            title: val.naam
 //        })
 //        markers.push(m);
-    })
-    
- 
-
-  
-    
-    
+    })  
 }
+
 function parseParkings(parkings)
 {
     clearMap();
@@ -239,10 +259,9 @@ function parseParkings(parkings)
             title: val.nr_p + ": " + val.naam
         })
         markers.push(m);
-    })
-    
-    
+    })   
 }
+
 function parseHighSchools(schools)
 {
     clearMap();
@@ -255,10 +274,9 @@ function parseHighSchools(schools)
             title: val.naam + ": " + val.adres
         })
         markers.push(m);
-    })
-    
-    
+    })    
 }
+
 function parseCentra(centra)
 {
     clearMap();
@@ -272,9 +290,8 @@ function parseCentra(centra)
         })
         markers.push(m);
     })
-    
-    
 }
+
 function parseLibraries(libs)
 {
     clearMap();
@@ -288,9 +305,8 @@ function parseLibraries(libs)
         })
         markers.push(m);
     })
-    
-    
 }
+
 function parseApoth(apoths)
 {
     clearMap();
@@ -304,7 +320,12 @@ function parseApoth(apoths)
         })
         markers.push(m);
     })
-    
-    
 }
 
+$(document).ready(function(){
+    $('#selData li:first-child input').attr('checked', true);
+    
+    if($('#cbxPS').attr('checked', false)) {
+      clearMap();
+    }
+})

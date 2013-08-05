@@ -283,8 +283,4 @@ class Application_Model_User
     public function setImage($image) {
         $this->_image = $image;
     }
-    
-   
-
-    
 }

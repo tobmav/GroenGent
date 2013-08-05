@@ -2,7 +2,6 @@
 
 class ErrorController extends Zend_Controller_Action
 {
-
     public function errorAction()
     {
         $errors = $this->_getParam('error_handler');
@@ -20,12 +19,28 @@ class ErrorController extends Zend_Controller_Action
                 $this->getResponse()->setHttpResponseCode(404);
                 $priority = Zend_Log::NOTICE;
                 $this->view->message = 'Page not found';
+                $this->renderScript('error/error_404.phtml');
                 break;
             default:
                 // application error
+                print_r($this->getResponse());
                 $this->getResponse()->setHttpResponseCode(500);
                 $priority = Zend_Log::CRIT;
+                $this->view->error_code = $this->getResponse()->getHttpResponseCode();
                 $this->view->message = 'Application error';
+                if ($log = $this->getLog()) {
+                $log->log($this->view->message, $priority, $errors->exception);
+                $log->log('Request Parameters', $priority, $errors->request->getParams());
+                $this->renderScript('error/error_500.phtml');
+                }
+                // conditionally display exceptions
+                if ($this->getInvokeArg('displayExceptions') == true) {
+                        $this->view->exception = $errors->exception;
+                }
+
+                $this->view->request = $errors->request;
+                $this->view->error_code = $this->getResponse()->getHttpResponseCode();
+                $this->renderScript('error/error_500.phtml');
                 break;
         }
         
@@ -52,7 +67,4 @@ class ErrorController extends Zend_Controller_Action
         $log = $bootstrap->getResource('Log');
         return $log;
     }
-
-
 }
-

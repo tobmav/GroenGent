@@ -118,15 +118,18 @@ class Application_Form_Register extends Zend_Form
                                 ->setAttrib('class', 'ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c')
         ;
         
+        /*Zend_Debug::dump(is_dir(APPLICATION_PATH . "/../public/images/"));
+        exit();*/
+        
         $image = new Zend_Form_Element_File('image');
         $image       ->setLabel('Avatar (Max 500KB, png or jpeg)')
                      ->setDestination(APPLICATION_PATH . "/../public/images/")
-                     ->addValidator('IsImage', false, array(
-                                            'jpeg',
-                                            'png'
-                                    ))
+                     ->addValidator('IsImage')
+                     ->addValidator('Mimetype', false, 'image/jpg')
                      ->addValidator('Size', false, 512000)
+                     ->setMaxFileSize(512000)
                       ->setAttrib('tabindex', '10')
+                
         ;
 
         $submit = new Zend_Form_Element_Submit('submit');
@@ -137,10 +140,9 @@ class Application_Form_Register extends Zend_Form
                ;
 
         $view = Zend_Layout::getMvcInstance()->getView();
-
         
-
         $this->setOptions(array('id' => 'view-register'))
+             ->setEnctype(Zend_Form::ENCTYPE_MULTIPART)
              ->setDecorators(array('FormElements', 'Form'))
              ->setMethod('post')
              ->setAction('')
@@ -182,9 +184,5 @@ class Application_Form_Register extends Zend_Form
         }
 
         return $valid;
-    }   
-
-
-
+    }
 }
-
