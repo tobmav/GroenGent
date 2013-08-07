@@ -25,5 +25,5 @@ class IndexController extends Zend_Controller_Action
         {
             $view->assign('loggedin',0);
         }   
-	}
+    }
 }

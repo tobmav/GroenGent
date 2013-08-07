@@ -12,11 +12,11 @@
                 <a href="<?php echo $this->url(
                         array('controller'=>'account', 'action' => 'login'),
                         'default',
-                        true) ?>" class="btn btn-primary btn-login">Login</a>
+                        true) ?>" class="btn btn-primary btn-login">Aanmelden</a>
                 <a href="<?php echo $this->url(
                         array('controller'=>'account', 'action' => 'register'),
                         'default',
-                        true) ?>" class="btn btn-secondary btn-register">Registreer</a>
+                        true) ?>" class="btn btn-secondary btn-register">Registreren</a>
                 
              </div>
          </section>
@@ -26,11 +26,11 @@
                 <a href="<?php echo $this->url(
                         array('controller'=>'account', 'action' => 'login'),
                         'default',
-                        true) ?>" class="btn btn-login">Login</a>
+                        true) ?>" class="btn btn-login">Aanmelden</a>
                 <a href="<?php echo $this->url(
                         array('controller'=>'account', 'action' => 'register'),
                         'default',
-                        true) ?>" class="btn btn-register">Registreer</a>
+                        true) ?>" class="btn btn-register">Registreren</a>
                 
              </div>
          </section>
@@ -49,7 +49,7 @@
                             'default',
                         true) ?>" data-icon="check" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="loginMobileBtn" class="btn btn-login ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
                 	<span class="ui-btn-inner">
-                    	<span class="ui-btn-text">Login</span>
+                    	<span class="ui-btn-text">Aanmelden</span>
                         <span class="ui-icon ui-icon-check ui-icon-shadow"></span>
                     </span>
                 </a>
@@ -149,16 +149,20 @@
                 <h3>Vergelijk</h3>
                 
                 <ul id="selData">
-                    <li><span class="liLeft">Basisscholen</span><span class="liRight"><input type="checkbox" onclick="getData(1)" name="cbxPS" id="cbxPS" checked/></span></li>
-                    <li><span class="liLeft">Ziekenhuizen</span><span class="liRight"><input type="checkbox" onclick="getData(2)" name="cbxPS" id="cbxHo"/></span></li>
-                    <li><span class="liLeft">Bioscopen</span><span class="liRight"><input type="checkbox" onclick="getData(3)" name="cbxPS" id="cbxCi"/></span></li>
-                    <li><span class="liLeft">Dierenartsen</span><span class="liRight"><input type="checkbox" onclick="getData(4)" name="cbxVP" id="cbxPS"/></span></li>
-                    <li><span class="liLeft">Studentenzones</span><span class="liRight"><input type="checkbox" onclick="getData(5)" name="cbxSH" id="cbxPS"/></span></li>
-                    <li><span class="liLeft">Parkings</span><span class="liRight"><input type="checkbox" onclick="getData(6)" name="cbxPS" id="cbxPa"/></span></li>
-                    <li><span class="liLeft">Secundaire scholen</span><span class="liRight"><input type="checkbox" onclick="getData(7)" name="cbxPS" id="cbxHS"/></span></li>
-                    <li><span class="liLeft">Gezondheidscentra</span><span class="liRight"><input type="checkbox" onclick="getData(8)" name="cbxHI" id="cbxPS"/></span></li>
-                    <li><span class="liLeft">Bibliotheken</span><span class="liRight"><input type="checkbox" onclick="getData(9)" name="cbxPS" id="cbxLI"/></span></li>
-                    <li><span class="liLeft">Apotheken</span><span class="liRight"><input type="checkbox" onclick="getData(10)" name="cbxPS" id="cbxPh"/></span></li>
+                    <li><span class="liLeft">Wijken</span><span class="liRight"><input type="checkbox" onclick="getData(1)" name="cbxWY" id="cbxWY"/></span></li>
+                    <li><span class="liLeft">Bebouwde oppervlakte</span><span class="liRight"><input type="checkbox" onclick="getData(2)" name="cbxBO" id="cbxBO"/></span></li>
+                    <li><span class="liLeft">Speelterreinen</span><span class="liRight"><input type="checkbox" onclick="getData(3)" name="cbxST" id="cbxST"/></span></li>
+                    <li><span class="liLeft">Bevolking/wijk</span><span class="liRight"><input type="checkbox" onclick="getData(4)" name="cbxBW" id="cbxBW"/></span></li>
+                    <li><span class="liLeft">Jeugdwerklocaties</span><span class="liRight"><input type="checkbox" onclick="getData(5)" name="cbxJW" id="cbxJW"/></span></li>
+                    <li><span class="liLeft">Bevolking/leeftijd: '01-'11</span><span class="liRight"><input type="checkbox" onclick="getData(6)" name="cbxBS" id="cbxBS"/></span></li>
+                    <li><span class="liLeft">Etnische minderheden</span><span class="liRight"><input type="checkbox" onclick="getData(7)" name="cbxEM" id="cbxEM"/></span></li>
+                    <li><span class="liLeft">Werkloosheid > 2 jaar</span><span class="liRight"><input type="checkbox" onclick="getData(8)" name="cbxWL" id="cbxWL"/></span></li>
+                    <li><span class="liLeft">Armoede, inkomen, arbeid</span><span class="liRight"><input type="checkbox" onclick="getData(9)" name="cbxAI" id="cbxAI"/></span></li>
+                    <li><span class="liLeft">Parkeergarages</span><span class="liRight"><input type="checkbox" onclick="getData(10)" name="cbxPG" id="cbxPG" checked/></span></li>
+                    <li><span class="liLeft">Parkinglocaties</span><span class="liRight"><input type="checkbox" onclick="getData(11)" name="cbxPL" id="cbxPL"/></span></li>
+                    <li><span class="liLeft">Bioscopen</span><span class="liRight"><input type="checkbox" onclick="getData(12)" name="cbxCI" id="cbxCI"/></span></li>
+                    <li><span class="liLeft">Sportcentra</span><span class="liRight"><input type="checkbox" onclick="getData(13)" name="cbxSC" id="cbxSC"/></span></li>
+                    <li><span class="liLeft">Bibliotheken</span><span class="liRight"><input type="checkbox" onclick="getData(14)" name="cbxBI" id="cbxBI"/></span></li>
                 </ul>
             </div>
             <div id="show-data">

@@ -41,7 +41,6 @@ function display(){
     });
 
     marker = new google.maps.Marker({
-        position: ghentlocation,
         map: gmaps,
         title: "Title"
     });
@@ -49,13 +48,6 @@ function display(){
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.open(gmaps,marker);
     });
-    
-    google.maps.event.addListener(m, 'click', function() {
-        infowindow.open(gmaps,m);
-    });
-    
-    // Force marker placement
-    marker.setMap(gmaps);
 }
 
 //GET LOCATION OF USER THROUGH WIFI OR 3G
@@ -109,18 +101,6 @@ function displayMap(){
             gmaps.panTo(locationCurrent);
         });
     }
-    
-    var iwContent = '<div id="contentIW">'+
-                        '<div id="siteNotice">'+
-                        '</div>'+
-                        '<h2 id="firstHeading" class="firstHeading">' + val.roepnaam + '</h2>'+
-                        '<div id="bodyContent">'+
-                            '<p>' + val.aanbod + '</p>'+
-                            '<p>' + val.straat + '</p>'+
-                            '<p>' + val.net + '</p>'+
-                            '<a href="https://www.google.com/maps/preview#!q=' + val.lat + '%2C+' + val.long + '&data=!4m10!1m9!4m8!1m3!1d46175175!2d16.9848501!3d0.2136714!3m2!1i1920!2i1085!4f13.1" title="" target="_blank">Navigeer</a>'
-                        '</div>'+
-                    '</div>';
 }
 
 //DOCUMENT READY

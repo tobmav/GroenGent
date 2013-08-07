@@ -145,7 +145,7 @@ header h1 {
     float: right;
 }
 
-#contentIW, #contentIW * {
+.iwContent, .iwContent {
     background: inherit;
     margin: 0;
     padding: 0;
@@ -352,6 +352,11 @@ footer {
 
 /* Common class */
 
+.txtBold {font-weight: bold;}
+.txtItalic {font-style: italic;}
+.txtUnderline {text-decoration: underline;}
+.txtUppercase {text-transform: uppercase;}
+
 .btnBlack {
     color: #fff;
     background: #000;
@@ -360,11 +365,40 @@ footer {
     cursor: pointer;
 }
 
+.btnNavigate {
+    width: 91%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background: #009fe3 !important;
+    color: #fff !important;
+    border-radius: 3px;
+    margin-top: 10px !important;
+    display: block;
+    text-decoration: none;
+}
+
+.btnNavigate:hover {font-style: italic;}
+.btnNavigate:focus, .btnNavigate:active {font-weight: bold;}
+
 /* Hide tablet/mobile css */
 
 #nav-tablet, #nav-mobile {visibility: hidden;}
 
-#contentIW {
-    width: 300px !important;
-    height: 100px;
+.iwContent {
+    width: 100% !important;
+}
+
+.iwTitle {
+    color: black;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    margin: 5px 0 20px 0;
+    font-weight: bold;
+}
+
+.iwUL li {
+    list-style-type: circle !important;
+    margin-bottom: 15px;
 }
