@@ -31,7 +31,7 @@ class Application_Form_Login extends Zend_Form
                       ->addFilter('StringTrim')
                       ->addValidator('NotEmpty', true) 
                       ->setAttrib('id','login-username')
-                      ->setAttrib('placeholder','Username')
+                      ->setAttrib('placeholder','Gebruikersnaam')
                       ->setAttrib('tabindex', '1')
                       ->setAttrib('autofocus', 'autofocus')
         ;
@@ -40,7 +40,7 @@ class Application_Form_Login extends Zend_Form
         $password_raw->setRequired()
                      ->addValidator('NotEmpty', true)
                       ->setAttrib('id','login-pwd')
-                      ->setAttrib('placeholder','Password')
+                      ->setAttrib('placeholder','Wachtwoord')
                       ->setAttrib('tabindex', '2')
         ;
 
@@ -92,4 +92,3 @@ class Application_Form_Login extends Zend_Form
 
 
 }
-

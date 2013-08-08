@@ -14,7 +14,7 @@ var infowindow = [];
 
 function display(){
     var myOptions = {
-    zoom: 13,
+    zoom: 10,
     center: ghentlocation,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             mapTypeControl: false,
@@ -86,7 +86,7 @@ function geoLocationError(err){
 
 //DISPLAY GOOGLE MAP
 function displayMap(){
-    zoomin = 11;
+    zoomin = 13;
     gmaps.setZoom(zoomin);
 
     if(locationCurrent != ghentlocation)

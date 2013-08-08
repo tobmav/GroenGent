@@ -7,31 +7,9 @@
 		</div>
         <?php if($this->loggedin == 0):?>
         <section id="nav-desktop">
-            <div id="buttons-header">
-                <a href="<?php echo $this->url(
-                        array('controller'=>'account', 'action' => 'login'),
-                        'default',
-                        true) ?>" class="btn btn-primary btn-login">Aanmelden</a>
-                <a href="<?php echo $this->url(
-                        array('controller'=>'account', 'action' => 'register'),
-                        'default',
-                        true) ?>" class="btn btn-secondary btn-register">Registreer</a>
-                
-             </div>
          </section>
          
         <section id="nav-tablet">
-            <div id="buttons-header-tablet">
-                <a href="<?php echo $this->url(
-                        array('controller'=>'account', 'action' => 'login'),
-                        'default',
-                        true) ?>" class="btn btn-login">Login</a>
-                <a href="<?php echo $this->url(
-                        array('controller'=>'account', 'action' => 'register'),
-                        'default',
-                        true) ?>" class="btn btn-register">Registreer</a>
-                
-             </div>
          </section>
          
          <section id="nav-mobile">         
@@ -145,34 +123,46 @@
 <div id="container">
         <section id="content-profile">
 
-<h1>Welcome <?php echo $this->username ?></h1>
-<h2><?php echo $this->firstname ?> <?php echo $this->surname ?></h2>
-<h2>Email: <a href="mailto:<?php echo $this->email ?>"><?php echo $this->email ?></a></h2>
-<h2><?php echo ($this->sex=='m'?"Man":"Vrouw") ;?></h2>
+<h1>Dag <?php echo $this->username ?>!</h1>
+<p class="borderBtm">Hieronder kan je gegevens bekijken en aanpassen.</p>
+<ul id="profileEdit">
+    <li><span class="txtBold">Naam:</span> <span class="txtVal"><?php echo $this->firstname ?> <?php echo $this->surname ?></span></li>
+    <li><span class="txtBold">E-mail:</span> <span class="txtVal"><?php echo $this->email ?></span></li>
+    <li><span class="txtBold">Geslacht:</span> <span class="txtVal"><?php echo ($this->sex=='m'?"Man":"Vrouw") ;?></span></li>
 
     <?php if (!empty($this->description)):?>
-    <p><strong>About <?php echo $this->firstname ?>:</strong> <?php echo $this->description ?></p>
-<?php endif; ?> 
+        <li><span class="txtBold">Over jou:</span> <span class="txtVal"><?php echo $this->description ?></span></li>
+    <?php endif; ?> 
 
-<!-- Btn Homepage -->
-<?php if (!empty($this->website)):?>
-    <a href="<?php echo $this->website; ?>"><?php echo $this->website; ?></a>
-<?php endif; ?> 
+    <!-- Btn Homepage -->
+    <br/>
+    <?php if (!empty($this->website)):?>
+    <li class="marginTop"><span class="txtBold">Jouw website:</span> <span class="txtVal"><a href="http://<?php echo $this->website; ?>" title="<?php echo $this->website; ?>" target="_blank"><?php echo $this->website; ?></a></span></li>
+    <?php endif; ?> 
 
-<?php if ($this->hasimage):?>
-    <img src="http:///GroenGent/public/images/<?php echo $this->image ;?>" alt="<?php echo $this->username ?>" />
-<?php endif; ?>
+    <?php if ($this->hasimage):?>
+        <li><img src="http:///GroenGent/public/images/<?php echo $this->image ;?>" alt="<?php echo $this->username ?>" /></li>
+    <?php endif; ?>
+</ul>
+<img src="<?=$this->baseUrl('_assets/img/icons/icon-profile.png')?>" class="icon-profile"/>
+    <div id="btnsProfile">
+        <!-- Btn Edit -->
+        <a href="<?php echo $this->url(
+            array('controller'=>'profile', 'action' => 'edit'),
+            'default',
+            true) ?>" class="btnGreen">Wijzig profiel</a>
+            
+        <!-- Btn Cancel -->
+        <a href="<?php echo $this->url(
+            array('controller'=>'index', 'action' => 'index'),
+            'default',
+            true) ?>" class="btnGreen">Annuleren</a>
 
-<!-- Btn Edit -->
-<a href="<?php echo $this->url(
-    array('controller'=>'profile', 'action' => 'edit'),
-    'default',
-    true) ?>">Wijzig profiel</a>
-
-<!-- Btn Logout -->
-<a href="<?php echo $this->url(
-    array('controller'=>'account', 'action' => 'logout'),
-    'default',
-    true) ?>">Afmelden</a>
+        <!-- Btn Logout -->
+        <a href="<?php echo $this->url(
+            array('controller'=>'account', 'action' => 'logout'),
+            'default',
+            true) ?>" class="btnGrey fRight">Afmelden</a>
         </section>
+    </div>
 </div>

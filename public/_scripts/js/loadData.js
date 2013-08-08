@@ -2,7 +2,7 @@ var data;
 var gmaps;
 var markers  =  [];
 var wijken   =  [];
-var kotzones =  [];
+var speelter =  [];
 var latlngs  =  [];
 var iwindows =  [];
 
@@ -30,7 +30,7 @@ function getData(el){
                     parseJson("http://datatank.gent.be/Doelgroepen/JeugdwerkLocaties.json");
                 break;
             case 6:
-                    parseJson("http://datatank.gent.be/Bevolking/BevolkingPerLeeftijd,Geslacht1999-2011.json");
+                    parseJson(["http://datatank.gent.be/Bevolking/BevolkingPerLeeftijd,Geslacht1999-2011.json"]);
                 break;
             case 7:
                     parseJson("http://datatank.gent.be/Bevolking/EtnischCultureleMinderhedenPerWijk.json");
@@ -81,10 +81,10 @@ function parse(data)
     if (data.Speelterreinen)                            {parseSpeelT(data.Speelterreinen);}
     if (data.BevolkingsdichtheidPerWijk)                {parseBDWijk(data.BevolkingsdichtheidPerWijk);}
     if (data.JeugdwerkLocaties)                         {parseJWLocaties(data.JeugdwerkLocaties);}
-    if (data.BevolkingPerLeeftijd,Geslacht1999-2011)    {parseBPLeeftijd(data.BevolkingPerLeeftijd,Geslacht1999-2011);}
+    //if (data.BevolkingPerLeeftijd,Geslacht1999-2011)    {/*parseBPLeeftijd(data.BevolkingPerLeeftijd,Geslacht1999-2011);*/}
     if (data.EtnischCultureleMinderhedenPerWijk)        {parseEtnMind(data.EtnischCultureleMinderhedenPerWijk);}
     if (data.Werkzoekenden)                             {parseWZoek(data.Werkzoekenden);}
-    if (data.Armoede,InkomenEnArbeid2000-2010)          {parseArmInkArb(data.Armoede,InkomenEnArbeid2000-2010);}
+    //if (data.Armoede,InkomenEnArbeid2000-2010)          {/*parseArmInkArb(data.Armoede,InkomenEnArbeid2000-2010);*/}
     if (data.Parkeergarages)                            {parseParkGar(data.Parkeergarages);}
     if (data.ParkinglocatiesInGent)                     {parseParkLGent(data.ParkinglocatiesInGent);}
     if (data.Bioscopen)                                 {parseBios(data.Bioscopen);}
@@ -98,11 +98,16 @@ function parse(data)
 }
 
 function clearMap(){
-    for (var i = 0; i < markers.length; i++ ) {
+  for (var i = 0; i < markers.length; i++ ) {
     markers[i].setMap(null);
   }
-    for (var i = 0; i < wijken.length; i++ ) {
+  
+  for (var i = 0; i < wijken.length; i++ ) {
     wijken[i].setMap(null);
+  }
+  
+  for (var i = 0; i < speelter.length; i++ ) {
+    speelter[i].setMap(null);
   }
 }
 
@@ -124,10 +129,10 @@ function parseWijken(dst)
         var z = new google.maps.Polygon({
             paths: latlngs,
             strokeColor: "#003300",
-            strokeOpacity: 0.8,
+            strokeOpacity: 0.5,
             strokeWeight: 2,
             fillColor: "#00FF00",
-            fillOpacity: 0.35,
+            fillOpacity: 0.3,
             name: dst.naam
         });
 
@@ -136,13 +141,12 @@ function parseWijken(dst)
     })
 }
 
-
-
-function parseStudenthousings(sth) {
+function parseBebOpp(spt) {
+{
     clearMap();
     markers =[];
-    console.log(sth);
-    $.each(sth, function(key,val){
+    console.log(spt);
+    $.each(spt, function(key,val){
         var c = val.coords;
         var d = c.split(' ');
         latlngs = [];
@@ -152,34 +156,22 @@ function parseStudenthousings(sth) {
             latlngs.push(latlng);
         })
         
-        var z = new google.maps.Polygon({
+        var gPol = new google.maps.Polygon({
             paths: latlngs,
-            strokeColor: "#FF0000",
+            strokeColor: "#003300",
             strokeOpacity: 0.8,
             strokeWeight: 2,
-            fillColor: "#FF0000",
+            fillColor: "#00FF00",
             fillOpacity: 0.35,
-            name: sth.kotzone_na
-          });
+            name: spt.naam
+        });
 
-        z.setMap(Googlemap);
-        kotzones.push(z);
- 
-//        v
-//        ar m = new google.maps.Marker({
-//            position: new google.maps.LatLng(val.lat,val.long), 
-//            map: Googlemap, 
-//            title: val.naam
-//        })
-//        markers.push(m);
-    })   
+        gPol.setMap(Googlemap);
+        speelter.push(gPol);
+    })
 }
 
-
-
-
-
-function parsePrimarySchools(schools)
+function parseSpeelT(schools)
 {
     // Clear map
     clearMap();
@@ -218,7 +210,7 @@ function parsePrimarySchools(schools)
     })
 }
 
-function parseVets(vets)
+function parseBDWijk(vets)
 {
     clearMap();
     markers =[];
@@ -233,7 +225,47 @@ function parseVets(vets)
     }) 
 }
 
-function parseHospitals(hospitals)
+function parseJWLocaties(jwl)
+{
+    alert("test");
+    
+    // Clear map
+    clearMap();
+    
+    // Check amount of markers, add them afterwards
+    $.each(jwl, function(key,val){
+        var m = new google.maps.Marker({
+            position: new google.maps.LatLng(val.lat,val.long), 
+            map: gmaps, 
+            title: val.organisati
+        });
+
+        var iwContent = '<div class="contentIW">'+
+                            '<h2 class="iwTitle txtUppercase">' + val.organisati + '</h2>'+
+                            '<div class="iwContent">'+
+                                '<ul class="iwUL">'+
+                                    '<li><span class="txtBold">Adres:</span> ' + val.straat + ' ' + val.huisnr + '</li>'+
+                                    '<li><span class="txtBold">Adres:</span> ' + val.postcode + ' ' + val.gemeente + '</li>'+
+                                '</ul>'+
+                                '<a href="https://www.google.com/maps/preview#!q=" + val.lat + "%2C+" + val.long + "&data=!4m10!1m9!4m8!1m3!1d46175175!2d16.9848501!3d0.2136714!3m2!1i1920!2i1085!4f13.1" title="Navigeer op Google Maps" class="btnNavigate" target="_blank">Navigeer op Google Maps</a>'
+                            '</div>'+
+                        '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+            content: iwContent
+        });
+
+        google.maps.event.addListener(m, 'click', function() {
+                //resetInfoWindow();
+                infowindow.close();
+                infowindow.open(gmaps,this);
+        });
+
+        markers.push(m);
+    })
+}
+
+function parseBPLeeftijd(hospitals)
 {
     clearMap();
     markers =[];
@@ -248,7 +280,7 @@ function parseHospitals(hospitals)
     })
 }
 
-function parseCinemas(cinemas)
+function parseEtnMind(cinemas)
 {
     clearMap();
     markers =[];
@@ -263,7 +295,7 @@ function parseCinemas(cinemas)
     })
 }
 
-function parseParkings(parkings)
+function parseWZoek(parkings)
 {
     clearMap();
     markers =[];
@@ -278,7 +310,7 @@ function parseParkings(parkings)
     })   
 }
 
-function parseHighSchools(schools)
+function parseArmInkArb(schools)
 {
     clearMap();
     markers =[];
@@ -293,7 +325,7 @@ function parseHighSchools(schools)
     })    
 }
 
-function parseCentra(centra)
+function parseParkGar(centra)
 {
     clearMap();
     markers =[];
@@ -308,7 +340,7 @@ function parseCentra(centra)
     })
 }
 
-function parseLibraries(libs)
+function parseParkLGent(libs)
 {
     clearMap();
     markers =[];
@@ -323,7 +355,37 @@ function parseLibraries(libs)
     })
 }
 
-function parseApoth(apoths)
+function parseBios(apoths)
+{
+    clearMap();
+    markers =[];
+    console.log(apoths);
+    $.each(apoths, function(key,val){
+        var m = new google.maps.Marker({
+            position: new google.maps.LatLng(val.lat,val.long), 
+            map: gmaps, 
+            title: val.naam + ": " + val.adres
+        })
+        markers.push(m);
+    })
+}
+
+function parseSpCentra(apoths)
+{
+    clearMap();
+    markers =[];
+    console.log(apoths);
+    $.each(apoths, function(key,val){
+        var m = new google.maps.Marker({
+            position: new google.maps.LatLng(val.lat,val.long), 
+            map: gmaps, 
+            title: val.naam + ": " + val.adres
+        })
+        markers.push(m);
+    })
+}
+
+function parseBibs(apoths)
 {
     clearMap();
     markers =[];
@@ -339,5 +401,6 @@ function parseApoth(apoths)
 }
 
 $(document).ready(function(){
-    $('#selData li:first-child input').attr('checked', true);
+    //$('#selData li:first-child input').attr('checked', true);
 })
+}

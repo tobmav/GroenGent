@@ -1,5 +1,11 @@
-<section class="error-content">
-    <h1>404</h1>
-    <h2>It looks like you found a <br /> <span>Dead Link</span></h2>
-    <img class="dead-link" src="<?=$this->baseUrl('images/404.png')?>" alt="Page not found" />
+<section id="page-error">
+    <div id="msg-error">
+        <h1>Nog iets dat Groener moet!</h1>
+        <p>Je bent op een pagina aanbelandt die nog niet bestaat.</p>
+        <a href="<?php echo $this->url(
+                        array('controller'=>'index', 'action' => 'index'),
+                        'default',
+                        true) ?>" title="GroenGent Home" class="btnError">Keer terug naar de startpagina.</a>
+    </div>
+    <img class="img-error" src="<?=$this->baseUrl('_assets/img/404.png')?>" alt="Deze pagina bestaat (nog) niet." />
 </section>
