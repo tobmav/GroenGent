@@ -1,11 +1,10 @@
-
 <header>
-		<div id="logo">
-        	<h1><a class="logo" href="<?php echo $this->url(
-                        array('controller'=>'index', 'action' => 'index'),
-                        'default',
-                        true) ?>" title="GroenGent Home">GroenGent</a></h1>
-		</div>
+        <div id="logo">
+        <h1><a class="logo" href="<?php echo $this->url(
+                array('controller'=>'index', 'action' => 'index'),
+                'default',
+                true) ?>" title="GroenGent Home">GroenGent</a></h1>
+        </div>
         <?php if($this->loggedin == 0):?>
         <section id="nav-desktop">
             <div id="buttons-header">
@@ -170,9 +169,20 @@
                     <div id="map_canvas" style="width:97%;height:300px;"></div>
                 </div>
             </div>
+            
+            <?php if($this->loggedin == 1):?>
             <div id="detail-data">
                 <h3>Jouw vergelijking:</h3>
             </div>
+            
+            <?php else: ?>
+            <div id="detail-data">
+                <h3>Meer info?</h3>
+                <p>Als je registreert, kan je bovenstaande data vergelijken. Op die manier weet je precies waar je naartoe moet gaan!</p>
+            </div>
+            
+            <?php endif; ?>
+            
         </section>
         
         <footer class="navbar">

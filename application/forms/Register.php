@@ -24,13 +24,26 @@ class Application_Form_Register extends Zend_Form
                 array('tag'   => 'div',
                       'class' => 'control-group')),
         );
+        
+        $username = new Zend_Form_Element_Text('username');
+        $username   
+                     ->setRequired()
+                     ->addFilter('StringTrim')
+                     ->addValidator('NotEmpty', true)
+                      ->setAttrib('id','login-username')
+                      ->setAttrib('placeholder','Gebruikersnaam')
+                      ->setAttrib('tabindex', '1')
+                      ->setAttrib('autofocus', 'autofocus')
+                ->setAttrib('class', 'ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c')
+        ;
+        
         $password = new Zend_Form_Element_Password('passwordraw');
         $password
                      ->setRequired()
                      ->addFilter('StringTrim')
                      ->addValidator('NotEmpty', true)
                       ->setAttrib('id','register-pwd')
-                      ->setAttrib('placeholder','Password')
+                      ->setAttrib('placeholder','Wachtwoord')
                       ->setAttrib('tabindex', '2')
                 ->setAttrib('class', 'ui-input-password ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c')
         ;
@@ -42,35 +55,25 @@ class Application_Form_Register extends Zend_Form
                      ->addValidator('NotEmpty', true)
                      ->addValidator('Identical', false, array('token' => 'passwordraw'))
                       ->setAttrib('id','register-pwdRpt')
-                      ->setAttrib('placeholder','Repeat password')
+                      ->setAttrib('placeholder','Herhaal wachtwoord')
                       ->setAttrib('tabindex', '3')
                 ->setAttrib('class', 'ui-input-password ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c')
                 
                 
         ;
         
-        $username = new Zend_Form_Element_Text('username');
-        $username   
-                     ->setRequired()
-                     ->addFilter('StringTrim')
-                     ->addValidator('NotEmpty', true)
-                      ->setAttrib('id','login-username')
-                      ->setAttrib('placeholder','Username')
-                      ->setAttrib('tabindex', '1')
-                      ->setAttrib('autofocus', 'autofocus')
-                ->setAttrib('class', 'ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c')
-        ;
         $firstname = new Zend_Form_Element_Text('firstname');
         $firstname  
                      ->setRequired()
                      ->addFilter('StringTrim')
                      ->addValidator('NotEmpty', true)
                       ->setAttrib('id','register-fname')
-                      ->setAttrib('placeholder','Firstname')
+                      ->setAttrib('placeholder','Voornaam')
                       ->setAttrib('tabindex', '4')
                                 ->setAttrib('class', 'ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c')
 
         ;
+        
         $surname = new Zend_Form_Element_Text('surname');
         $surname   
                      ->setRequired()
@@ -78,7 +81,7 @@ class Application_Form_Register extends Zend_Form
                      ->addValidator('NotEmpty', true)
                 
                       ->setAttrib('id','register-fname')
-                      ->setAttrib('placeholder','Ssurname')
+                      ->setAttrib('placeholder','Naam')
                       ->setAttrib('tabindex', '5')
                                 ->setAttrib('class', 'ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c')
         ;
@@ -89,26 +92,28 @@ class Application_Form_Register extends Zend_Form
                      ->addFilter('StringTrim')
                      ->addValidator('NotEmpty', true)
                       ->setAttrib('id','register-email')
-                      ->setAttrib('placeholder','Email')
+                      ->setAttrib('placeholder','E-mail')
                       ->setAttrib('tabindex', '6')
                                 ->setAttrib('class', 'ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c')
         ;
         
         $sex = new Zend_Form_Element_Radio('sex');
-        $sex      ->setLabel('Gender')
+        $sex      ->setLabel('Geslacht')
                     ->addMultiOptions(array(
-                        'm' => 'Male',
-                        'f' => 'Female',
+                        'm' => 'Man',
+                        'f' => 'Vrouw',
                     ))
                      ->setRequired()
                       ->setAttrib('tabindex', '7')
-            ;
+        ;
+        
         $description = new Zend_Form_Element_Textarea('description');
-        $description    ->setValue("Describe yourself briefly (optional).")
+        $description    ->setValue("Beschrijf jezelf kort (optioneel).")
                       ->setAttrib('id','textarea-a')
                       ->setAttrib('tabindex', '8')
                                 ->setAttrib('class', 'ui-input-text ui-body-c ui-corner-all ui-shadow-inset')
         ;
+        
         $website = new Zend_Form_Element_Text('website');
         $website     
                      ->addFilter('StringTrim')
@@ -122,7 +127,7 @@ class Application_Form_Register extends Zend_Form
         exit();*/
         
         $image = new Zend_Form_Element_File('image');
-        $image       ->setLabel('Avatar (Max 500KB, png or jpeg)')
+        $image       ->setLabel('Avatar (Max 500Kb, png of jpeg)')
                      ->setDestination(APPLICATION_PATH . "/../public/images/")
                      ->addValidator('IsImage')
                      ->addValidator('Mimetype', false, 'image/jpg')
@@ -133,7 +138,7 @@ class Application_Form_Register extends Zend_Form
         ;
 
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Register')
+        $submit->setLabel('Registreer')
                ->setOptions(array('class' => 'btn btn-success'))
                ->setAttrib('id', 'register-btn')
                       ->setAttrib('tabindex', '11')

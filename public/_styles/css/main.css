@@ -167,8 +167,8 @@ header h1 {
 
 #contentIW {max-width: 400px !important; max-height: 300px !important;}
 
-#map_canvas {height: 535px !important; margin: 10px 0 0 10px;}
-#choose-data *, #map_canvas {padding: 10px;}
+#map_canvas {height: 545px !important; width: 670px !important; margin: 10px 0 0 10px;}
+#choose-data * {padding: 10px;}
 #views, #view-login, #view-register, #view-forgot {z-index: 99;}
 
 #overlay, #overlay-view {
