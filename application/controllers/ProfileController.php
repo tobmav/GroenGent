@@ -16,28 +16,13 @@ class ProfileController extends Zend_Controller_Action
         $user = new Application_Model_User($userM->read($id));
         $view = $this->view;
         //Zend_Debug::dump($user);
-        $view->assign('username',$user->getUsername());
-        $view->assign('firstname',$user->getFirstname());
-        $view->assign('surname',$user->getSurname());
-        $view->assign('email',$user->getEmail());
-        $view->assign('sex',$user->getSex());
-        $view->assign('description',$user->getDescription());
-        $view->assign('website',$user->getWebsite());
-        
-        $imgM = new Application_Model_ImageMapper();
-        
-        if ($user->getImage() != null) {
-            $image = $imgM->read($user->getImage());
-            $img = new Application_Model_Image();
-        
-            $view->assign('image',$img->getImage());
-            $view->assign('mime',$img->getMimetype());
-            $view->assign('hasimage',true);
-        }
-        
-        else {
-            $view->assign('hasimage',false);
-        }
+        $view->assign('username',     $user->getUsername    ());
+        $view->assign('firstname',    $user->getFirstname   ());
+        $view->assign('surname',      $user->getSurname     ());
+        $view->assign('email',        $user->getEmail       ());
+        $view->assign('sex',          $user->getSex         ());
+        $view->assign('description',  $user->getDescription ());
+        $view->assign('website',      $user->getWebsite     ());
         
         $view->assign('path',APPLICATION_PATH);
     }
@@ -45,41 +30,30 @@ class ProfileController extends Zend_Controller_Action
     public function editAction()
     {
         $form = new Application_Form_Register();
-        $form->getElement("submit")->setLabel("Change");
-        $form->getElement("passwordraw")->clearValidators()->setAllowEmpty(true)->setRequired(false);
+        $form->getElement("submit")       ->setLabel("Opslaan");
+        $form->getElement("passwordraw")  ->clearValidators()->setAllowEmpty(true)->setRequired(false);
         $form->getElement("passwordcheck")->clearValidators()->setAllowEmpty(true)->setRequired(false);
         $form->removeElement('username');
         
         $view = $this->view;
-        $view->title = 'Edit Profile';
+        $view->title = 'Wijzig profiel';
         
         $auth = Zend_Auth::getInstance();
         $id = $auth->getStorage()->read()['id'];
         if($id >0)
         {
             $userM = new Application_Model_UserMapper();
-            $user = new Application_Model_User($userM->read($id));
+            $user  = new Application_Model_User($userM->read($id));
            
             $users = array();
-            $usrimg = $user->getImage();
-            Zend_Debug::dump($usrimg);
-            if (!empty($usrimg)) {
-                $imgM = new Application_Model_ImageMapper();
-                $img = new Application_Model_Image($imgM->read($user->getImage()));
-                Zend_Debug::dump($img);
-                $users['image'] = $img->getImage();
-                
-                $i = "http://localhost/GroenGent/public/images/" . $img->getImage();
-                $view->assign('image', $i);
-            }
             
-            $users['username'] = $user->getUsername();
-            $users['firstname'] = $user->getFirstname();
-            $users['surname'] = $user->getSurname();
-            $users['sex'] = $user->getSex();
-            $users['description'] = $user->getDescription();
-            $users['website'] = $user->getWebsite();
-            $users['email'] = $user->getEmail();
+            $users['username']      = $user->getUsername();
+            $users['firstname']     = $user->getFirstname();
+            $users['surname']       = $user->getSurname();
+            $users['sex']           = $user->getSex();
+            $users['description']   = $user->getDescription();
+            $users['website']       = $user->getWebsite();
+            $users['email']         = $user->getEmail();
             
             //Zend_Debug::dump($users);
             $form->populate($users);
@@ -98,6 +72,7 @@ class ProfileController extends Zend_Controller_Action
                $values = $form->getValues();
                 $form->populate($values);
                 $val = $this->getRequest()->getPost();
+                
                 if ($form->isValid( $request->getPost() )) {
                     Zend_debug::dump($val);
                     if(isset($val["passwordraw"]))
@@ -114,51 +89,11 @@ class ProfileController extends Zend_Controller_Action
                     $modifiedd = $modifiedd->format('Y-m-d H:i:s');
                     $user->setModifieddate( $modifiedd );
                     
-                    if($form->image->isUploaded())
-                    {
-                        $image = new Application_Model_Image();
-                        $name = $form->image->getFileName(null,false);
-
-                        $mime = $form->image->getMimeType();
-
-                        $image->setMimetype($mime);
-                        $image->setImage($name);
-                        $exts = explode('/', $mime);
-                        $ext = end($exts);
-
-                        $new_image_name = $user->getUsername(). '.' . $ext;     
-
-                        //NOT WORKING WHEN ONLY RENAME FILTER... NEITHER IS NOW
-                        $form->image->addFilter('Rename',$new_image_name, true);
-
-                        try {
-
-                            if ($form->image->receive()) {
-                                $imMapper = new Application_Model_ImageMapper();
-                                $imid = $imMapper->save($image);
-
-                                $user->setImage($imid);
-                                $uMapper = new Application_Model_UserMapper();
-                                $uid = $uMapper->save($user);
-                                $user->setId($uid);
-
-                                return $this->redirect('profile/index');
-                            }
-                            else {
-                                throw new Zend_Exception("file not uploaded ");
-                            }
-                        
-                        } catch (Zend_File_Transfer_Exception $e) {
-                            throw new Zend_Exception("file not uploaded well");
-                        }
-                    }
-                    else {
-                        $uMapper = new Application_Model_UserMapper();
+                    $uMapper = new Application_Model_UserMapper();
                     
-                        $uid = $uMapper->save($user);
-                        $user->setId($uid);
-                        return $this->redirect('profile/index');
-                    }
+                    $uid = $uMapper->save($user);
+                    $user->setId($uid);
+                    return $this->redirect('profile/index');
                 }
             }
         }

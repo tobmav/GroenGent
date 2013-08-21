@@ -13,6 +13,10 @@
         echo  $this->layout()->content ."\n"
         . $this->inlineScript() ."\n";
     ?>
-        
+    <script>
+        $(window).load(function() {
+            $('#slider').nivoSlider();
+        });
+    </script>
     </body>
 </html>

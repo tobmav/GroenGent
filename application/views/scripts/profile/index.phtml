@@ -3,7 +3,7 @@
         	<h1><a class="logo" href="<?php echo $this->url(
                         array('controller'=>'index', 'action' => 'index'),
                         'default',
-                        true) ?>" title="GroenGent Home">GroenGent</a></h1>
+                        true) ?>" title="GroenGent Home" data-ajax="false">GroenGent</a></h1>
 		</div>
         <?php if($this->loggedin == 0):?>
         <section id="nav-desktop">
@@ -13,7 +13,7 @@
          </section>
          
          <section id="nav-mobile">         
-         	<a href="#" title="Navigation menu" data-icon="grid" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="menuBtn ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+         	<a href="#" title="Navigation menu" data-icon="grid" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="menuBtn ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c" data-ajax="false">
                 <span class="ui-btn-inner">
                     <span class="ui-btn-text"></span>
                     <span class="ui-icon ui-icon-grid ui-icon-shadow" style="margin: -4px 0 0 -4px;"></span>
@@ -24,7 +24,7 @@
          		<a href="<?php echo $this->url(
                             array('controller'=>'account', 'action' => 'login'),
                             'default',
-                        true) ?>" data-icon="check" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="loginMobileBtn" class="btn btn-login ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                        true) ?>" data-ajax="false" data-icon="check" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="loginMobileBtn" class="btn btn-login ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
                 	<span class="ui-btn-inner">
                     	<span class="ui-btn-text">Aanmelden</span>
                         <span class="ui-icon ui-icon-check ui-icon-shadow"></span>
@@ -34,14 +34,14 @@
                 <a href="<?php echo $this->url(
                         array('controller'=>'account', 'action' => 'register'),
                         'default',
-                        true) ?>" data-icon="edit" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="registerMobileBtn" class="btn btn-register ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                        true) ?>" data-ajax="false" data-icon="edit" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="registerMobileBtn" class="btn btn-register ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
                 	<span class="ui-btn-inner">
                     	<span class="ui-btn-text">Registreer</span>
                         <span class="ui-icon ui-icon-edit ui-icon-shadow"></span>
                     </span>
                 </a>
                 
-                <a href="#" title="Disclaimer" id="mobileDisclaimerBtn" data-icon="info" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="#styleMobile" class="btn btn-disclaimer ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                <a href="#" title="Disclaimer" id="mobileDisclaimerBtn" data-ajax="false" data-icon="info" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="#styleMobile" class="btn btn-disclaimer ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
                     <span class="ui-btn-inner">
                         <span class="ui-btn-text">Disclaimer</span>
                         <span class="ui-icon ui-icon-info ui-icon-shadow"></span>
@@ -55,11 +55,11 @@
                 <a href="<?php echo $this->url(
                         array('controller'=>'profile'),
                         'default',
-                        true) ?>" class="btn btn-primary btn-profile"><?php echo "Hello " . $this->username; ?></a>
+                        true) ?>" class="btn btn-primary btn-profile" data-ajax="false"><?php echo "Hello " . $this->username; ?></a>
                 <a href="<?php echo $this->url(
                         array('controller'=>'account', 'action' => 'logout'),
                         'default',
-                        true) ?>" class="btn btn-primary btn-profile">Afmelden</a>
+                        true) ?>" class="btn btn-primary btn-profile" data-ajax="false">Afmelden</a>
                 
              </div>
          </section>
@@ -69,18 +69,18 @@
                 <a href="<?php echo "Hello " . $this->url(
                         array('controller'=>'profile'),
                         'default',
-                        true) ?>" class="btn btn-login"><?php echo "Hello " . $this->username; ?></a>
+                        true) ?>" class="btn btn-login" data-ajax="false"><?php echo "Hello " . $this->username; ?></a>
                 <a href="<?php echo $this->url(
                         array('controller'=>'account', 'action' => 'logout'),
                         'default',
-                        true) ?>" class="btn btn-register">Afmelden</a>
+                        true) ?>" class="btn btn-register" data-ajax="false">Afmelden</a>
                 
                 
              </div>
          </section>
          
          <section id="nav-mobile">         
-         	<a href="#" title="Navigation menu" data-icon="grid" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="menuBtn ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+         	<a href="#" title="Navigation menu" data-ajax="false" data-icon="grid" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="menuBtn ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
                 <span class="ui-btn-inner">
                     <span class="ui-btn-text"></span>
                     <span class="ui-icon ui-icon-grid ui-icon-shadow" style="margin: -4px 0 0 -4px;"></span>
@@ -91,7 +91,7 @@
          		<a href="<?php echo "Hallo " . $this->url(
                         array('controller'=>'profile'),
                         'default',
-                        true) ?>" data-icon="check" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="profileMobileBtn" class="btn btn-profile ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                        true) ?>" data-ajax="false" data-icon="check" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="profileMobileBtn" class="btn btn-profile ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
                 	<span class="ui-btn-inner">
                     	<span class="ui-btn-text"><?php echo "Hallo " . $this->username; ?></span>
                         <span class="ui-icon ui-icon-check ui-icon-shadow"></span>
@@ -100,7 +100,7 @@
          		<a href="<?php echo $this->url(
                         array('controller'=>'account', 'action' => 'logout'),
                         'default',
-                        true) ?>" data-icon="check" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="profileMobileBtn" class="btn btn-profile ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                        true) ?>" data-ajax="false" data-icon="check" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="profileMobileBtn" class="btn btn-profile ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
                 	<span class="ui-btn-inner">
                     	<span class="ui-btn-text">Afmelden</span>
                         <span class="ui-icon ui-icon-check ui-icon-shadow"></span>
@@ -108,7 +108,7 @@
                 </a>
                 
                              
-                <a href="#" title="Disclaimer" id="mobileDisclaimerBtn" data-icon="info" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="#styleMobile" class="btn btn-disclaimer ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                <a href="#" title="Disclaimer" id="mobileDisclaimerBtn" data-ajax="false" data-icon="info" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="#styleMobile" class="btn btn-disclaimer ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
                     <span class="ui-btn-inner">
                         <span class="ui-btn-text">Disclaimer</span>
                         <span class="ui-icon ui-icon-info ui-icon-shadow"></span>
@@ -150,19 +150,19 @@
         <a href="<?php echo $this->url(
             array('controller'=>'profile', 'action' => 'edit'),
             'default',
-            true) ?>" class="btnGreen">Wijzig profiel</a>
+            true) ?>" class="btnGreen" data-ajax="false">Wijzig profiel</a>
             
         <!-- Btn Cancel -->
         <a href="<?php echo $this->url(
             array('controller'=>'index', 'action' => 'index'),
             'default',
-            true) ?>" class="btnGreen">Annuleren</a>
+            true) ?>" class="btnGreen" data-ajax="false">Annuleren</a>
 
         <!-- Btn Logout -->
         <a href="<?php echo $this->url(
             array('controller'=>'account', 'action' => 'logout'),
             'default',
-            true) ?>" class="btnGrey fRight">Afmelden</a>
+            true) ?>" class="btnGrey fRight" data-ajax="false">Afmelden</a>
         </section>
     </div>
 </div>

@@ -66,8 +66,5 @@ class Application_Model_Dataset
 
     public function setModifieddate($modifieddate) {
         $this->_modifieddate = $modifieddate;
-    }
-
-
-            
+    }            
 }

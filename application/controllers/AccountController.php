@@ -14,7 +14,7 @@ class AccountController extends Zend_Controller_Action
         $form = new Application_Form_Login();
 
         $view = $this->view;
-        $view->title = 'Login';
+        $view->title = 'GroenGent - Aanmelden';
 
         $request = $this->getRequest();
 
@@ -74,132 +74,53 @@ class AccountController extends Zend_Controller_Action
                 $user->setCreateddate( $createdd );
                 $user->setActivationkey(statGhent_Utility::randomString(64) );
               
-                if($form->image->isUploaded())
-                {
-                    $image = new Application_Model_Image();
-                    $name = $form->image->getFileName(null,false);
+                $uMapper = new Application_Model_UserMapper();
                     
-                    $mime = $form->image->getMimeType();
-                    
-                    $image->setMimetype($mime);
-                    $image->setImage($name);
-                    $exts = explode('/', $mime);
-                    $ext = end($exts);
-                    
-                    $new_image_name = $user->getUsername(). '.' . $ext;     
-                    
-                    //NOT WORKING WHEN ONLY RENAME FILTER... NEITHER IS NOW
-                    $form->image->addFilter('Rename',$new_image_name, true);
-                    
-                    try {
-                        
-                        if ($form->image->receive()) {
-                            $imMapper = new Application_Model_ImageMapper();
-                            $imid = $imMapper->save($image);
-                            
-                            $user->setImage($imid);
-                            $uMapper = new Application_Model_UserMapper();
-                            $uid = $uMapper->save($user);
-                            $user->setId($uid);
-                            $config = array('auth' => 'login',
-                                            'username' => 'statGhent@gmail.com',
-                                            'password' => 'statGhent1991',
-                                            'ssl' => 'tls');
+                $uid = $uMapper->save($user);
+                $user->setId($uid);
+                    $config = array('auth' => 'login',
+                                    'username' => 'statGhent@gmail.com',
+                                    'password' => 'statGhent1991',
+                                    'ssl' => 'ssl',
+                                    'port' => '465');
+                    // tls 587
 
-                            $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
-                                                        
-                            $html = "<table style='width:60%; margin-left:5%'>
+                    $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
 
-                                            <tr>
-                                                    <th colspan='5' height='100px;' style='border-bottom:1px solid #3a3a3a;'>ACTIVATION MAIL GROENGENT</th>
+                    $html = "<table style='width:60%; margin-left:5%'>
+                                <tr>
+                                        <th colspan='5' height='100px;' style='border-bottom:1px solid #3a3a3a;'>Activatiemail GroenGent</th>
 
-                                            </tr>
-                                            <tr style='height:80px;'>
+                                </tr>
+                                <tr style='height:80px;'>
 
-                                                <td colspan='5' style='font:Verdana, Geneva, sans-serif; font-weight:bold;font-size:24px;'>Welkom " . $user->getUsername() . " bij statGhent!</td>
-                                            </tr>
-                                            <tr style='height:40px;'>
+                                    <td colspan='5' style='font:Verdana, Geneva, sans-serif; font-weight:bold;font-size:24px;'>Welcome " . $user->getUsername() . " bij GroenGent!</td>
+                                </tr>
+                                <tr style='height:40px;'>
 
-                                                <td colspan='5'><a href='http://localhost/GroenGent/public/account/activate?id=". $user->getId() ."&key=". $user->getActivationkey() ."' style='color:#3e3e3e; text-decoration:underline;'>Activate your account now!</a></td>
-                                            </tr>
-                                            <tr>
+                                    <td colspan='5'><a href='http://localhost/GroenGent/public/account/activate?id=". $user->getId() ."&key=". $user->getActivationkey() ."' style='color:#3e3e3e; text-decoration:underline;'>Activeer je account via deze link:</a></td>
+                                </tr>
+                                <tr>
 
-                                                <td colspan='5'>Link not working? Try copying this link into your browser:</td>
-                                            </tr>
-                                            <tr>
+                                    <td colspan='5'>Werkt deze link niet? Kopieer hem naar je adresbalk.</td>
+                                </tr>
+                                <tr>
 
-                                                <td colspan='5'>http://localhost/GroenGent/public/account/activate?id=". $user->getId() ."&key=". $user->getActivationkey()."</td>
-                                            </tr>
-                                            </table>
-                            ";
-                            
-                            $mail = new Zend_Mail();
-                            $mail->setBodyHtml($html);
-                            $mail->setFrom('statGhent@gmail.com');
-                            $mail->addTo($user->getEmail());
-                            $mail->setSubject('statGhent | Activationlink');
-                            $mail->send($transport);
-                            return $this->redirect('account/login');
-                        }
-                        else {
-                            throw new Zend_Exception("file not uploaded or mail kapoet");
-                       }
-                        
-                    } catch (Zend_File_Transfer_Exception $e) {
-                        throw new Zend_Exception("file not uploaded well");
-                    }
-                }
-                else { 
-                     //throw new Zend_Exception("file not provided");
-                    $uMapper = new Application_Model_UserMapper();
-                    
-                    $uid = $uMapper->save($user);
-                    $user->setId($uid);
-                            $config = array('auth' => 'login',
-                                            'username' => 'statGhent@gmail.com',
-                                            'password' => 'statGhent1991',
-                                            'ssl' => 'ssl',
-                                            'port' => '465');
-                            // tls 587
+                                    <td colspan='5'>http://localhost/GroenGent/public/account/activate?id=". $user->getId() ."&key=". $user->getActivationkey()."</td>
+                                </tr>
+                            </table>
+                    ";
 
-                            $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
-                                                        
-                            $html = "<table style='width:60%; margin-left:5%'>
+                    $mail = new Zend_Mail();
+                    $mail->setBodyHtml($html);
+                    $mail->setFrom('GroenGent@gmail.com');
+                    $mail->addTo($user->getEmail());
+                    $mail->setSubject('GroenGent | Activatielink');
+                    $mail->send($transport);
 
-                                            <tr>
-                                                    <th colspan='5' height='100px;' style='border-bottom:1px solid #3a3a3a;'>ACTIVATION MAIL GROENGENT</th>
-
-                                            </tr>
-                                            <tr style='height:80px;'>
-
-                                                <td colspan='5' style='font:Verdana, Geneva, sans-serif; font-weight:bold;font-size:24px;'>Welcome " . $user->getUsername() . " to statGhent!</td>
-                                            </tr>
-                                            <tr style='height:40px;'>
-
-                                                <td colspan='5'><a href='http://localhost/GroenGent/public/account/activate?id=". $user->getId() ."&key=". $user->getActivationkey() ."' style='color:#3e3e3e; text-decoration:underline;'>Activate your account now!</a></td>
-                                            </tr>
-                                            <tr>
-
-                                                <td colspan='5'>Link not working? Try copying this link into your browser:</td>
-                                            </tr>
-                                            <tr>
-
-                                                <td colspan='5'>http://localhost/GroenGent/public/account/activate?id=". $user->getId() ."&key=". $user->getActivationkey()."</td>
-                                            </tr>
-                                            </table>
-                            ";
-                            
-                            $mail = new Zend_Mail();
-                            $mail->setBodyHtml($html);
-                            $mail->setFrom('statGhent@gmail.com');
-                            $mail->addTo($user->getEmail());
-                            $mail->setSubject('statGhent | Activationlink');
-                            $mail->send($transport);
-                            
-                            return $this->redirect('account/login');
-                }
-                
+                    return $this->redirect('account/login');    
             }
+            
             else { 
                 print_r($val);
             }
@@ -232,7 +153,7 @@ class AccountController extends Zend_Controller_Action
                     return $this->redirect('account/login');
                    
                }  else {
-                   throw new Zend_Exception('The key provided was incorrect.');
+                   throw new Zend_Exception('De opgegeven link is onjuist. Neem contact op met de admin: tobmav@gmai.com');
 
                }
             }
@@ -247,7 +168,7 @@ class AccountController extends Zend_Controller_Action
     {
         $form = new Application_Form_Forgotpassword();
         $view = $this->view;
-        $view->title = 'Forgot Password';
+        $view->title = 'GroenGent | Wachtwoord vergeten';
 
         $request = $this->getRequest();
 
@@ -269,8 +190,8 @@ class AccountController extends Zend_Controller_Action
                     $userM->save($user);
                     
                     $config = array('auth' => 'login',
-                                            'username' => 'statGhent@gmail.com',
-                                            'password' => 'statGhent1991',
+                                            'username' => 'GroenGent@gmail.com',
+                                            'password' => 'GroenGent',
                                             'ssl' => 'tls');
 
                             $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
@@ -278,20 +199,20 @@ class AccountController extends Zend_Controller_Action
                             $html = "<table style='width:60%; margin-left:5%'>
 
                                 <tr>
-                                        <th colspan='5' height='100px;' style='border-bottom:1px solid #3a3a3a;'>FORGOT PASSWORD MAIL GROENGENT</th>
+                                        <th colspan='5' height='100px;' style='border-bottom:1px solid #3a3a3a;'>Wijziging wachtwoord GroenGent</th>
 
                                 </tr>
                                 <tr style='height:80px;'>
 
-                                    <td colspan='5' style='font:Verdana, Geneva, sans-serif; font-weight:bold;font-size:24px;'>Hello " . $user->getUsername() . "!</td>
+                                    <td colspan='5' style='font:Verdana, Geneva, sans-serif; font-weight:bold;font-size:24px;'>Hallo " . $user->getUsername() . "!</td>
                                 </tr>
                                 <tr style='height:40px;'>
 
-                                    <td colspan='5'>Your new password is <em>". $pass ."</em>.</td>
+                                    <td colspan='5'>Je nieuwe wachtwoord is <em>". $pass ."</em>.</td>
                                 </tr>
                                 <tr style='height:40px;'>
 
-                                    <td colspan='5'>You can change this on the edit profile page.</td>
+                                    <td colspan='5'>Je kan dit aanpassen op de profielpagina.</td>
                                 </tr>
                                 
                                 </table>
@@ -299,9 +220,9 @@ class AccountController extends Zend_Controller_Action
                             
                             $mail = new Zend_Mail();
                             $mail->setBodyHtml($html);
-                            $mail->setFrom('statGhent@gmail.com');
+                            $mail->setFrom('GroenGent@gmail.com');
                             $mail->addTo($user->getEmail());
-                            $mail->setSubject('statGhent | Activationlink');
+                            $mail->setSubject('GroenGent | Wachtwoord vergeten');
                             $mail->send($transport);
                             return $this->redirect('account/login');
                 }

@@ -60,7 +60,5 @@ class Application_Model_Image
 
     public function setImage($image) {
         $this->_image = $image;
-    }
-
-            
+    }      
 }

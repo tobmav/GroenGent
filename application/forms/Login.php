@@ -45,10 +45,10 @@ class Application_Form_Login extends Zend_Form
         ;
 
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Login')
+        $submit->setLabel('Aanmelden')
                ->setOptions(array('class' => 'btn btn-success'))
                ->setAttrib('id', 'login-btn')
-                      ->setAttrib('tabindex', '3')
+               ->setAttrib('tabindex', '3')
         ;
 
         $view = Zend_Layout::getMvcInstance()->getView();
@@ -89,6 +89,4 @@ class Application_Form_Login extends Zend_Form
 
         return $valid;
     }
-
-
 }

@@ -2,7 +2,6 @@
 
 class Application_Form_Forgotpassword extends Zend_Form
 {
-
     public function init()
     {
         $decorators = array(
@@ -31,7 +30,7 @@ class Application_Form_Forgotpassword extends Zend_Form
                       ->setRequired()
                       ->addFilter('StringTrim')
                       ->addValidator('NotEmpty', true) 
-                      ->setAttrib('placeholder','Username')
+                      ->setAttrib('placeholder','Gebruikersnaam')
                       ->setAttrib('tabindex', '1')
                       ->setAttrib('autofocus', 'autofocus')
                       ->setOptions(array('class' => 'ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c', 'id' => 'forgot-username'))
@@ -43,16 +42,16 @@ class Application_Form_Forgotpassword extends Zend_Form
                      ->addValidator('NotEmpty', true)
                      ->addValidator('EmailAddress')
                      ->addFilter('StringTrim')
-                      ->setAttrib('placeholder','Email')
-                      ->setAttrib('tabindex', '2')
-                      ->setOptions(array('class' => 'ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c', 'id' => 'forgot-email'))
+                     ->setAttrib('placeholder','Email')
+                     ->setAttrib('tabindex', '2')
+                     ->setOptions(array('class' => 'ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c', 'id' => 'forgot-email'))
         ;
 
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Request password')
+        $submit->setLabel('Verzend')
                ->setOptions(array('class' => 'btn btn-success', 'id' => "fpwd-btn"))
-                      ->setAttrib('tabindex', '3')
-               ;
+               ->setAttrib('tabindex', '3')
+        ;
 
         $view = Zend_Layout::getMvcInstance()->getView();
 
@@ -84,14 +83,9 @@ class Application_Form_Forgotpassword extends Zend_Form
                 $options['class'] .= ' error';
 
                 $decorator->setOptions($options);
-                }
-                
+                } 
             }
         }
-
         return $valid;
     }
-
-
 }
-

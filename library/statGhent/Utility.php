@@ -9,7 +9,7 @@ abstract class statGhent_Utility
      */
     public static function hash($data, $algo = 'sha1')
     {
-        $key = 'saltiewaltietestimbalti oh snap';
+        $key = 'salttest';
 
         // Hash-based Message Authentication Code
         return hash_hmac($algo, $data, $key);
@@ -23,9 +23,7 @@ abstract class statGhent_Utility
         for ($i = 0; $i < $length; $i++) {
             $str .= $chars[mt_rand(0, strlen($chars) - 1)];
         }
-
         return $str;
     }
 }
-
 ?>

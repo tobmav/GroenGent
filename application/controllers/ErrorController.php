@@ -7,7 +7,7 @@ class ErrorController extends Zend_Controller_Action
         $errors = $this->_getParam('error_handler');
         
         if (!$errors || !$errors instanceof ArrayObject) {
-            $this->view->message = 'You have reached the error page';
+            $this->view->message = 'Ai, er is iets misgelopen!';
             return;
         }
         
@@ -18,7 +18,7 @@ class ErrorController extends Zend_Controller_Action
                 // 404 error -- controller or action not found
                 $this->getResponse()->setHttpResponseCode(404);
                 $priority = Zend_Log::NOTICE;
-                $this->view->message = 'Page not found';
+                $this->view->message = 'Pagina niet gevonden.';
                 $this->renderScript('error/error_404.phtml');
                 break;
             default:
