@@ -24,9 +24,9 @@
          <section id="nav-mobile">         
              <div id="navbar-mobile" data-role="navbar">
                 <ul>
-                    <li><a href="#" class="ui-btn-active" id="mobileInfo" data-role="button" data-icon="info"></a></li>
-                    <li><a href="#" id="mobileLijst" data-role="button" data-icon="bars"></a></li>
-                    <li><a href="#" id="mobileKaart" data-role="button" data-icon="search"></a></li>
+                    <li><a href="#" title="Info" class="ui-btn-active" id="mobileInfo" data-role="button" data-icon="info"></a></li>
+                    <li><a href="#" title="Lijst" id="mobileLijst" data-role="button" data-icon="bars"></a></li>
+                    <li><a href="#" title="Kaart" id="mobileKaart" data-role="button" data-icon="search"></a></li>
                 </ul>
             </div>
          </section>
@@ -79,8 +79,8 @@
                 'default',
                 true) ?>" title="Wachtwoord vergeten" class="btn" data-ajax="false" data-role="button" data-icon="alert" data-theme="b" class="txtWhite">Wachtwoord vergeten</a></li>
                         
-            <li><a href="#" data-role="button" data-inline="true" class="btnFullWidth">Disclaimer</a></li>
-            <li id="mobileClose"><a href="#" data-role="button" data-inline="true" class="btnFullWidth">Sluit venster</a></li>
+            <li id="mobileDisclaimer"><a href="#" title="Disclaimer" data-role="button" data-inline="true" class="btnFullWidth">Disclaimer</a></li>
+            <li id="mobileClose"><a href="#" title="Sluit venster" data-role="button" data-inline="true" class="btnFullWidth">Sluit venster</a></li>
         </ul>
     </div>
     
@@ -155,14 +155,14 @@
             </div>
         </footer>
         
-        <div id="view-disclaimer">      
+        <div id="view-disclaimer">     
             <h2 data-role="header" class="ui-header ui-bar-a ui-title" role="banner" role="heading" aria-level="1">Disclaimer</h2><span class="closeBtn btn">X</span>
         
             <p>Deze web-app werd gebouwd in opdracht van de Arteveldehogeschool.</p>
             
             <p>Niets - zowel visueel, inhoudelijk als technisch - uit deze web-app mag gebruikt of overnomen geworden, zonder volledig akkoord van de maker.</p>
             
-            <p>Web-app gemaakt met:
+            <p>Web-app gemaakt met:</p>
                 <ul>
                     <li>PHP [Zend Framework] met MVC</li>
                     <li>RESTful API: kan JSON/JSON-P genereren</li>
@@ -173,9 +173,9 @@
                     <li>Canvas, Twitter Bootstrap, jQuery Mobile</li>
                     <li>Adobe Photoshop</li>
                 </ul>
-            </p>
             
-            <p>&copy; <a href="http://www.arteveldehogeschool.be" title="Arteveldehogeschool" target="_blank">Arteveldehogeschool Gent</a>, <br/>Tom Van humbeek - 2013</p>
+            <p class="txtCenter fontSmall">&copy; <a href="http://www.arteveldehogeschool.be" title="Arteveldehogeschool" target="_blank">Arteveldehogeschool Gent</a>, Tom Van humbeek - 2013</p>
+            <a href="#" id="mobileClose" data-role="button" data-inline="true" class="btnFullWidth">Terug</a>
         </div>
     </div>
    <div id="overlay"></div>

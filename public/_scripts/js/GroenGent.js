@@ -1,5 +1,10 @@
 var loaded = false;
 
+function initMobile() {
+    $('#intro').show();
+    $('#choose-data, #show-data').fadeOut().hide();
+}
+
 $(document).ready(function() {
         loaded = true;
         
@@ -7,6 +12,7 @@ $(document).ready(function() {
         getData(1);
         
         // Mobile
+        
         $('.btn-user').click(function() {
             $('#menu-mobile, #overlay').fadeIn('fast');
         });
@@ -15,9 +21,10 @@ $(document).ready(function() {
             $('#menu-mobile, #overlay').fadeOut('fast');
         });
        
-        $('#mobileInfo').click(function() {
-            $('#intro').show();
-            $('#choose-data, #show-data').fadeOut().hide();
+        $('#logo h1 a, #mobileInfo').click(function() {
+            initMobile();
+            $('#mobileKaart').removeClass('ui-btn-active');
+            $('#mobileInfo').addClass('ui-btn-active');
         });
        
         $('#mobileLijst').click(function() {
@@ -29,11 +36,27 @@ $(document).ready(function() {
             $('#show-data').show();
             $('#intro, #choose-data').hide();
             $('#show-data *').css('display', 'block !important');
+            
+            // jQuery Mobile fix for Google Maps
             google.maps.event.trigger(gmaps, 'resize');
-            map.panTo(new google.maps.LatLng(lastLoc.lat(), lastLoc.lng()));
+            gmaps.panTo(new google.maps.LatLng(lastLoc.lat(), lastLoc.lng()));
+        });
+        
+        $('#mobileDisclaimer').click(function() {
+            $('#menu-mobile').fadeOut('fast');
+            $('#view-disclaimer, #overlay').fadeIn('fast');
+        });
+        
+        $('#view-disclaimer #mobileClose').click(function(){
+            $('#view-disclaimer').fadeOut();
+            $('#menu-mobile').delay(400).fadeIn();
         });
         
         // Desktop
+         
+        // Force cleanup KML data
+        /*google.maps.event.trigger(gmaps, 'resize');
+        map.panTo(new google.maps.LatLng(lastLoc.lat(), lastLoc.lng()));*/
         
         $('.btn-login').click(function() {
 		$('#overlay').clearQueue().fadeIn('fast');
@@ -90,17 +113,17 @@ function showOverlays() {
 	$('#view-login').show();
 	$('#view-forgot').show();
 	$('#view-register').show();
+        
         var url = window.location;
-        console.log(url.pathname);
         var d = url.pathname.split('');
         var s = url.pathname.split('/');
+        
         if (d [d.length-1] == '/') {
             var pathname = s[s.length-2];
-        }else  {
+        }
+        else  {
             var pathname = s[s.length-1];
         }
-        
-	console.log(pathname);
         
         if(pathname == 'login' || pathname == 'forgotpassword' || pathname == 'register')
         {
