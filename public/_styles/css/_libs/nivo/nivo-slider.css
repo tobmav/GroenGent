@@ -88,3 +88,5 @@
 .nivo-controlNav a.active {
 	font-weight:bold;
 }
+
+.nivo-prevNav {max-width: 10px !important;}

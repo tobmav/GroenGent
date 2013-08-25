@@ -4,6 +4,7 @@ html, body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    padding-bottom: 55px;
 }
 
 header {
@@ -71,7 +72,6 @@ header h1 {
 #content, #content-profile {
     width: 960px;
     min-height: 80%;
-    background: blue;
     clear: both;
     margin: 0 auto;
     margin-top: 50px;
@@ -118,6 +118,14 @@ header h1 {
     margin-right: 500px;
 }
 
+#content-profile img {
+    float: right;
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    margin-left: 805px;
+}
+
 #choose-data, #show-data {float: left;}
 
 #choose-data {
@@ -130,31 +138,53 @@ header h1 {
     border-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
 }
 
+#choose-data * {color: #fff !important;}
 #choose-data li {padding: 0 0 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.25); clear: both;}
 #choose-data li:first-child {border-top: 1px solid rgba(255, 255, 255, 0.25); padding-top: 10px;}
 #choose-data li:last-child {border-bottom: none;}
+#selData {margin: 0;}
 
-#choose-data li input {
-    margin-top: -9px !important;
-    top: -10px;
-    margin-bottom: 10px !important;
+#selData li {
+    height: 20px;
+    width: 235px;
     display: block;
-    width: 15px;
-    height: 15px;
+    clear: both;
 }
 
-ul#selData {margin: 0;}
-
-ul#selData input {
-    width: 15px !important;
-    height: 15px !important;
-    top: -5px !important;
-    margin: -20px 0 0 0 !important;
-    right: 0 !important;
+.liLeft {
+    width: 150px;
+    height: 100%;
+    display: block;
+    float: left;
+    padding: 10px 0 !important;
 }
 
-ul#selData li {max-height: 20px !important;}
-.liRight {float: right; margin: 3px -20px 0 0;}
+.liLeft:hover, #selData li:hover, #selData a:hover {
+    text-decoration: underline;
+}
+
+.liRight {
+    width: 20px;
+    height: 100%;
+    float: right; 
+    display: block;
+}
+
+a.liRight {
+    background-image: url('../../_assets/img/icons/icon-data.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+a.liRight:hover {background-position: center center !important;}
+
+#selData .btn {
+    padding: 3px 5px;
+    margin: 1px -1px 0 0;
+    font-size: 11px;
+    color: #000 !important;
+}
+
 #choose-data select {margin: 10px 0 0 10px; width: 180px;}
 
 #container {
@@ -175,7 +205,7 @@ ul#selData li {max-height: 20px !important;}
 
 #show-data {
     width: 690px;
-    height: 620px;
+    height: 501px;
     background: #008045;
     color: #fff;
     clear: right;
@@ -188,7 +218,9 @@ ul#selData li {max-height: 20px !important;}
     width: 938px;
     height: 230px;
     background: #eee;
-    border: 1px solid #008045;
+    border-radius: 5px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    border: none;
     color: #008045;
     padding: 10px;
     margin: -30px 0 20px 0;
@@ -217,26 +249,7 @@ ul#selData li {max-height: 20px !important;}
     color: #000;
 }
 
-#compare h3, #intro h3 {
-    margin: 10px 0 20px 0;
-}
-
-#c1, #c2, #c3 {
-    width: 290px;
-    height: 180px;
-    display: block;
-    float: left;
-    padding: 0 10px;
-}
-
-#c1 li {padding: 10px;}
-#c1 li:hover {background: #ddd;}
-
-#c1UL {
-    max-height: 150px;
-    overflow: auto;
-    cursor: pointer
-}
+#compare h3, #intro h3 {margin: 10px 0 20px 0;}
 
 #compare h4 {
     text-transform: uppercase;
@@ -244,6 +257,22 @@ ul#selData li {max-height: 20px !important;}
     padding-bottom: 5px;
     margin-bottom: 10px;
 }
+
+#cImg {
+    width: 410px;
+    height: 130px;
+    float: right;
+    margin: 20px 0 0 0;
+}
+
+#cImg img {margin-right: 50px;}
+
+#compare p {
+    width: 400px;
+    margin-left: 20px;
+}
+
+#c1 {margin-left: 10px;}
 
 .detail-data p {
     float: left;
@@ -261,9 +290,13 @@ ul#selData li {max-height: 20px !important;}
     height: auto;
 }
 
-#contentIW {max-width: 400px !important; max-height: 300px !important;}
+#show-data h2 {
+    font-size: 1.5em !important;
+}
 
-#map_canvas {height: 600px !important; width: 670px !important; margin: 10px 0 0 10px;}
+.iwContent li {list-style-type: none !important; background-image: none !important;}
+#contentIW {max-width: 400px !important; max-height: 300px !important;}
+#map_canvas {height: 480px !important; width: 670px !important; margin: 10px 0 0 10px;}
 #choose-data * {padding: 10px;}
 #views, #view-login, #view-register, #view-forgot {z-index: 99 !important;}
 
@@ -348,6 +381,8 @@ ul#selData li {max-height: 20px !important;}
     font-weight: bold;
     font-size: 18px;
 }
+
+.sidePadding {padding: 10px 5px !important;}
 
 #login-username, #login-pwd, #register-fname, #register-lname, #register-email, #register-pwd, #register-pwdRpt, #register-description, #register-username, #register-website, #forgot-username, #forgot-email {
     width: 273px !important;
@@ -533,13 +568,25 @@ footer {
     color: #fff;
 }
 
+#btnsProfile a {border-radius: 5px;}
+
+#btnsProfile a.btn-success {
+    max-height: 20px !important;
+    padding: 10px !important;
+    margin-top: 3px !important;
+}
+
 /* Common class */
 
-.txtBold {font-weight: bold;}
+.nivo-prevNav {max-width: 10px !important;}
+
+.txtBold {font-weight: bold !important;}
 .txtItalic {font-style: italic;}
 .txtUnderline {text-decoration: underline;}
 .txtUppercase {text-transform: uppercase;}
 .txtCenter {text-align: center;}
+.txtBlack {color: #000 !important;}
+.capitalize {text-transform: capitalize;}
 
 .borderBtm {
     padding-bottom: 20px;
@@ -551,6 +598,26 @@ footer {
 .marginTop {margin-top: 30px;}
 .forceDown {margin-top: -38px !important;}
 .fontSmall {font-size: 11px;}
+
+.noFancyStuff {
+    background: none;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+}
+
+.noFancyStuff:hover {
+    background: none;
+    text-decoration: none;
+    font-style: italic;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+}
 
 .btnGrey {
     background: #ccc;
@@ -579,7 +646,7 @@ footer {
 }
 
 .btnNavigate {
-    width: 91%;
+    width: 85%;
     height: 30px;
     text-align: center;
     line-height: 30px;
@@ -631,7 +698,7 @@ footer {
 
 .padMedium {padding: 4px 10px 5px 10px !important; top: -39px;}
 
-/* Hide tablet/mobile css */
+/* Hide mobile css */
 
 #nav-tablet, #nav-mobile {visibility: hidden;}
 .iwContent {width: 100% !important;}
@@ -646,9 +713,11 @@ footer {
 }
 
 .iwUL li {
-    list-style-type: circle !important;
+    list-style-type: none !important;
     margin-bottom: 15px;
 }
+
+.iwUL {margin-left: 0 !important;}
 
 /* Force properties */
 #view-register #login-username {width: 263px !important;}
@@ -662,7 +731,7 @@ input#sex-m {margin-left: 22px !important;}
     position: absolute;
     display: block;
     top: 10px;
-    left: 10;
+    left: 40px;
 }
 
 header a:first-child {color: white !important;}
@@ -674,3 +743,29 @@ header a:nth-child(2) {color: #333 !important;}
 }
 
 .btnMobile {display: none;}
+
+.allBlack .btn.txtBlack.ui-link {
+    color: #000 !important;
+    padding: 5px 10px 4px 10px !important;
+    margin-top: -3px !important;
+}
+
+#show-data, #show-data * {font-family: Arial, Verdana, sans-serif !important;}
+
+.contentIW {
+    overflow: hidden !important; 
+    padding: 0 0 1em 15px;
+}
+
+.gm-style-iw {height: inherit !important;}
+
+a.btnNavigate {
+    width: 90%;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    display: block;
+    padding: 7px 5% !important
+}
+
+#choose-data li a:first-child {background: none !important;}

@@ -1,168 +1,100 @@
 <header>
-		<div id="logo">
-        	<h1><a class="logo" href="<?php echo $this->url(
-                        array('controller'=>'index', 'action' => 'index'),
-                        'default',
-                        true) ?>" title="GroenGent Home" data-ajax="false">GroenGent</a></h1>
-		</div>
-        <?php if($this->loggedin == 0):?>
-        <section id="nav-desktop">
-         </section>
-         
-        <section id="nav-tablet">
-         </section>
-         
-         <section id="nav-mobile">         
-         	<a href="#" title="Navigation menu" data-icon="grid" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="menuBtn ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c" data-ajax="false">
-                <span class="ui-btn-inner">
-                    <span class="ui-btn-text"></span>
-                    <span class="ui-icon ui-icon-grid ui-icon-shadow" style="margin: -4px 0 0 -4px;"></span>
-                </span>
-            </a>
-         
-         <div id="buttons-header-mobile">
-         		<a href="<?php echo $this->url(
-                            array('controller'=>'account', 'action' => 'login'),
-                            'default',
-                        true) ?>" data-ajax="false" data-icon="check" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="loginMobileBtn" class="btn btn-login ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
-                	<span class="ui-btn-inner">
-                    	<span class="ui-btn-text">Aanmelden</span>
-                        <span class="ui-icon ui-icon-check ui-icon-shadow"></span>
-                    </span>
-                </a>
-                
-                <a href="<?php echo $this->url(
-                        array('controller'=>'account', 'action' => 'register'),
-                        'default',
-                        true) ?>" data-ajax="false" data-icon="edit" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="registerMobileBtn" class="btn btn-register ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
-                	<span class="ui-btn-inner">
-                    	<span class="ui-btn-text">Registreer</span>
-                        <span class="ui-icon ui-icon-edit ui-icon-shadow"></span>
-                    </span>
-                </a>
-                
-                <a href="#" title="Disclaimer" id="mobileDisclaimerBtn" data-ajax="false" data-icon="info" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="#styleMobile" class="btn btn-disclaimer ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
-                    <span class="ui-btn-inner">
-                        <span class="ui-btn-text">Disclaimer</span>
-                        <span class="ui-icon ui-icon-info ui-icon-shadow"></span>
-                    </span>
-                </a>
-             </div>
-         </section>
-    <?php else: ?>
-        <section id="nav-desktop">
-            <div id="buttons-header">
-                <a href="<?php echo $this->url(
-                        array('controller'=>'profile'),
-                        'default',
-                        true) ?>" class="btn btn-primary btn-profile" data-ajax="false"><?php echo "Hello " . $this->username; ?></a>
-                <a href="<?php echo $this->url(
-                        array('controller'=>'account', 'action' => 'logout'),
-                        'default',
-                        true) ?>" class="btn btn-primary btn-profile" data-ajax="false">Afmelden</a>
-                
-             </div>
-         </section>
-         
-        <section id="nav-tablet">
-            <div id="buttons-header-tablet">
-                <a href="<?php echo "Hello " . $this->url(
-                        array('controller'=>'profile'),
-                        'default',
-                        true) ?>" class="btn btn-login" data-ajax="false"><?php echo "Hello " . $this->username; ?></a>
-                <a href="<?php echo $this->url(
-                        array('controller'=>'account', 'action' => 'logout'),
-                        'default',
-                        true) ?>" class="btn btn-register" data-ajax="false">Afmelden</a>
-                
-                
-             </div>
-         </section>
-         
-         <section id="nav-mobile">         
-         	<a href="#" title="Navigation menu" data-ajax="false" data-icon="grid" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="menuBtn ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
-                <span class="ui-btn-inner">
-                    <span class="ui-btn-text"></span>
-                    <span class="ui-icon ui-icon-grid ui-icon-shadow" style="margin: -4px 0 0 -4px;"></span>
-                </span>
-            </a>
-         
-         <div id="buttons-header-mobile">
-         		<a href="<?php echo "Hallo " . $this->url(
-                        array('controller'=>'profile'),
-                        'default',
-                        true) ?>" data-ajax="false" data-icon="check" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="profileMobileBtn" class="btn btn-profile ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
-                	<span class="ui-btn-inner">
-                    	<span class="ui-btn-text"><?php echo "Hallo " . $this->username; ?></span>
-                        <span class="ui-icon ui-icon-check ui-icon-shadow"></span>
-                    </span>
-                </a>
-         		<a href="<?php echo $this->url(
-                        array('controller'=>'account', 'action' => 'logout'),
-                        'default',
-                        true) ?>" data-ajax="false" data-icon="check" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="profileMobileBtn" class="btn btn-profile ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
-                	<span class="ui-btn-inner">
-                    	<span class="ui-btn-text">Afmelden</span>
-                        <span class="ui-icon ui-icon-check ui-icon-shadow"></span>
-                    </span>
-                </a>
-                
-                             
-                <a href="#" title="Disclaimer" id="mobileDisclaimerBtn" data-ajax="false" data-icon="info" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" id="#styleMobile" class="btn btn-disclaimer ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
-                    <span class="ui-btn-inner">
-                        <span class="ui-btn-text">Disclaimer</span>
-                        <span class="ui-icon ui-icon-info ui-icon-shadow"></span>
-                    </span>
-                </a>
-             </div>
-         </section>
-    <?php endif; ?>
-    
-    </header>
+    <div id="logo">
+    <h1><a class="logo" href="<?php echo $this->url(
+            array('controller'=>'index', 'action' => 'index'),
+            'default',
+            true) ?>" title="GroenGent Home" data-ajax="false">GroenGent</a></h1>
+    </div>
+    <section id="nav-mobile">         
+         <div id="navbar-mobile" data-role="navbar">
+            <ul>
+                <li><a href="<?php echo $this->url(
+                array('controller'=>'profile', 'action' => 'edit'),
+                'default',
+                true) ?>" title="Wijzigen" class="btn" data-role="button" data-icon="edit" data-ajax="false"></a></li>
+                <li><a href="<?php echo $this->url(
+                array('controller'=>'index', 'action' => 'index'),
+                'default',
+                true) ?>" title="Home" class="" data-role="button" data-icon="home" data-ajax="false"></a></a></li>
+                <li><a href="<?php echo $this->url(
+                array('controller'=>'account', 'action' => 'logout'),
+                'default',
+                true) ?>" title="Afmelden" class="" data-role="button" data-icon="delete" data-ajax="false"></a></li>
+            </ul>
+        </div>
+     </section>
+</header>
+
+<div id="view-disclaimer">     
+    <h2 data-role="header" class="ui-header ui-bar-a ui-title sidePadding" role="banner" role="heading" aria-level="1">Disclaimer</h2><span class="closeBtn btn">X</span>
+
+    <p>Deze web-app werd gebouwd in opdracht van de Arteveldehogeschool.</p>
+
+    <p>Niets - zowel visueel, inhoudelijk als technisch - uit deze web-app mag gebruikt of overnomen geworden, zonder volledig akkoord van de maker.</p>
+
+    <p>Web-app gemaakt met:</p>
+        <ul>
+            <li>PHP [Zend Framework] met MVC</li>
+            <li>RESTful API: kan JSON/JSON-P genereren</li>
+            <li>MySQL</li>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>jQuery</li>
+            <li>Canvas, Twitter Bootstrap, jQuery Mobile</li>
+            <li>Adobe Photoshop</li>
+        </ul>
+
+    <p class="txtCenter fontSmall">&copy; <a href="http://www.arteveldehogeschool.be" title="Arteveldehogeschool" target="_blank">Arteveldehogeschool Gent</a>, Tom Van humbeek - 2013</p>
+    <a href="#" id="mobileClose" data-role="button" data-inline="true" class="btnFullWidth">Terug</a>
+</div>
 
 <div id="container">
         <section id="content-profile">
+            <h1>Dag <?php echo $this->username ?>!</h1>
+            <p class="borderBtm">Hieronder kan je je gegevens bekijken en aanpassen.</p>
+            <ul id="profileEdit">
+                <li><span class="txtBold">Naam:</span> <span class="txtVal"><?php echo $this->firstname ?> <?php echo $this->surname ?></span></li>
+                <li><span class="txtBold">E-mail:</span> <span class="txtVal"><?php echo $this->email ?></span></li>
+                <li><span class="txtBold">Geslacht:</span> <span class="txtVal"><?php echo ($this->sex=='m'?"Man":"Vrouw") ;?></span></li>
 
-<h1>Dag <?php echo $this->username ?>!</h1>
-<p class="borderBtm">Hieronder kan je je gegevens bekijken en aanpassen.</p>
-<ul id="profileEdit">
-    <li><span class="txtBold">Naam:</span> <span class="txtVal"><?php echo $this->firstname ?> <?php echo $this->surname ?></span></li>
-    <li><span class="txtBold">E-mail:</span> <span class="txtVal"><?php echo $this->email ?></span></li>
-    <li><span class="txtBold">Geslacht:</span> <span class="txtVal"><?php echo ($this->sex=='m'?"Man":"Vrouw") ;?></span></li>
+                <?php if (!empty($this->description)):?>
+                    <li><span class="txtBold">Over jou:</span> <span class="txtVal"><?php echo $this->description ?></span></li>
+                <?php endif; ?> 
 
-    <?php if (!empty($this->description)):?>
-        <li><span class="txtBold">Over jou:</span> <span class="txtVal"><?php echo $this->description ?></span></li>
-    <?php endif; ?> 
+                <!-- Btn Homepage -->
+                <br/>
+                <?php if (!empty($this->website)):?>
+                    <li class="marginTop"><span class="txtBold">Jouw website:</span> <span class="txtVal"><a href="http://<?php echo $this->website; ?>" title="<?php echo $this->website; ?>" target="_blank"><?php echo $this->website; ?></a></span></li>
+                <?php endif; ?>
+            </ul>
+            <img src="<?=$this->baseUrl('_assets/img/icons/icon-profile.png')?>" class="icon-profile"/>
+            <div id="btnsProfile">
+                <!-- Btn Edit -->
+                <a href="<?php echo $this->url(
+                    array('controller'=>'profile', 'action' => 'edit'),
+                    'default',
+                    true) ?>" class="btn-primary" data-role="button" data-icon="edit" data-iconpos="notext" data-theme="b" data-inline="true" data-ajax="false">Wijzig profiel</a>
 
-    <!-- Btn Homepage -->
-    <br/>
-    <?php if (!empty($this->website)):?>
-    <li class="marginTop"><span class="txtBold">Jouw website:</span> <span class="txtVal"><a href="http://<?php echo $this->website; ?>" title="<?php echo $this->website; ?>" target="_blank"><?php echo $this->website; ?></a></span></li>
-    <?php endif; ?> 
+                <!-- Btn Cancel -->
+                <a href="<?php echo $this->url(
+                    array('controller'=>'index', 'action' => 'index'),
+                    'default',
+                    true) ?>" class="btn" data-role="button" data-icon="home" data-iconpos="notext" data-theme="b" data-inline="true" data-ajax="false">Annuleren</a>
 
-    <?php if ($this->hasimage):?>
-        <li><img src="http:///GroenGent/public/images/<?php echo $this->image ;?>" alt="<?php echo $this->username ?>" /></li>
-    <?php endif; ?>
-</ul>
-<img src="<?=$this->baseUrl('_assets/img/icons/icon-profile.png')?>" class="icon-profile"/>
-    <div id="btnsProfile">
-        <!-- Btn Edit -->
-        <a href="<?php echo $this->url(
-            array('controller'=>'profile', 'action' => 'edit'),
-            'default',
-            true) ?>" class="btnGreen" data-ajax="false">Wijzig profiel</a>
-            
-        <!-- Btn Cancel -->
-        <a href="<?php echo $this->url(
-            array('controller'=>'index', 'action' => 'index'),
-            'default',
-            true) ?>" class="btnGreen" data-ajax="false">Annuleren</a>
-
-        <!-- Btn Logout -->
-        <a href="<?php echo $this->url(
-            array('controller'=>'account', 'action' => 'logout'),
-            'default',
-            true) ?>" class="btnGrey fRight" data-ajax="false">Afmelden</a>
+                <!-- Btn Logout -->
+                <a href="<?php echo $this->url(
+                    array('controller'=>'account', 'action' => 'logout'),
+                    'default',
+                    true) ?>" class="btn fRight" data-role="button" data-icon="delete" data-iconpos="notext" data-theme="b" data-inline="true" data-ajax="false">Afmelden</a>
+            </div>
         </section>
+</div>
+
+<footer>
+    <div class="">
+        &copy; Tom Van humbeek, Arteveldehogeschool 2013. <a href="#" title="Disclaimer" class="btn">DISCLAIMER</a>
     </div>
+</footer>
+
+<div id="overlay">
 </div>

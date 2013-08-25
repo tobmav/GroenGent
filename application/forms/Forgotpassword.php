@@ -51,6 +51,7 @@ class Application_Form_Forgotpassword extends Zend_Form
         $submit->setLabel('Verzend')
                ->setOptions(array('class' => 'btn btn-success', 'id' => "fpwd-btn"))
                ->setAttrib('tabindex', '3')
+               ->setAttrib('data-ajax', 'false')
         ;
 
         $view = Zend_Layout::getMvcInstance()->getView();
@@ -61,7 +62,7 @@ class Application_Form_Forgotpassword extends Zend_Form
              ->setAction('')
              ->addElement($username)
              ->addElement($email )
-             ->addElement($submit       )
+             ->addElement($submit)
         ;
     }
 

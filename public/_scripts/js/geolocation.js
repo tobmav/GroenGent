@@ -7,7 +7,7 @@
 var gmaps;
 var currentMarker;
 var locationCurrent;
-var ghentlocation = new google.maps.LatLng(51.05866,3.763161);
+var ghentlocation = new google.maps.LatLng(51.053468,3.7303799999999683);
 var marker = [];
 var m = [];
 var infowindow = [];

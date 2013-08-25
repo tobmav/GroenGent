@@ -94,7 +94,6 @@ class Application_Form_Register extends Zend_Form
                    ->setRequired()
                    ->setAttrib('tabindex', '5')
                    ->setAttrib('class','frmMLeft')
-                   
         ;
         
         $description = new Zend_Form_Element_Textarea('description');
@@ -120,6 +119,7 @@ class Application_Form_Register extends Zend_Form
                ->setOptions(array('class' => 'btn btn-success'))
                ->setAttrib('id', 'register-btn')
                ->setAttrib('tabindex', '8')
+               ->setAttrib('data-ajax', 'false')
         ;
 
         $view = Zend_Layout::getMvcInstance()->getView();

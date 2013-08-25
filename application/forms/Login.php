@@ -61,6 +61,7 @@ class Application_Form_Login extends Zend_Form
              ->addElement($text_username)
              ->addElement($password_raw )
              ->addElement($submit       )
+             ->setAttrib('data-ajax', 'false')
         ;
     }
 

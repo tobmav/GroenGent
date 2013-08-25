@@ -117,20 +117,20 @@ header a {
     display: block;
 }
 
-#intro {
+#intro, #compare {
     max-width: 100%;
     min-height: 100% !important;
     height: 100% !important;
 }
 
-#intro {
+#intro, #compare {
     padding: 5% 0;
     color: darkgreen;
     height: 100% !important;
     display: block;
 }
 
-#intro * {
+#intro *, #compare {
     max-width: 90%;
     margin-left: 5%;
     text-align: justify;
@@ -141,7 +141,7 @@ header a {
     margin: 2em 0 5em 5% !important;
 }
 
-#intro {
+#intro, #compare {
     position: absolute;
     width: 100%;
     height: 70%;
@@ -150,7 +150,7 @@ header a {
     color: darkgreen;
 }
 
-#intro h3 {
+#intro h3, #compare h3 {
     width: 90%;
     font-family: 'Pacifico', cursive !important;
     font-size: 1.5em;
@@ -158,6 +158,42 @@ header a {
     margin-bottom: 2em;
     float: left;
 }
+
+#compare h4 {
+    text-align: center;
+    text-decoration: underline;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+#compare li {margin-bottom: 1em;}
+#compare ul li:last-child {margin-bottom: 3em;}
+
+#compare p {
+    width: 90%;
+    padding: 5%;
+    line-height: 1.5em; 
+    text-align: justify;
+}
+
+#cImg {
+    width: 90%;
+    padding: 5%;
+}
+
+#cImg img {max-width: 25%;}
+
+#c1 {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    left: 50%;
+    top: 9.5em;
+}
+
+#c3 {float: right;}
 
 .btn-user {
     position: fixed;
@@ -194,7 +230,8 @@ header a {
     display: none;
 }
 
-#menu-mobile li:nth-child(1) *, #menu-mobile li:nth-child(2) *, #menu-mobile li:nth-child(3) * {color: #fff !important;}
+#mobileOUT li:nth-child(1) *, #mobileOUT li:nth-child(2) *, #mobileOUT li:nth-child(3) * {color: #fff !important;}
+#mobileIN li:nth-child(1) *, #mobileIN li:nth-child(2) * {color: #fff !important;}
 #menu-mobile li:nth-child(4) {margin: 4em 0 -2em 0;}
 #mobileClose {margin: -1em 0 -2em;}
 #menu-mobile ul {width: 100%;}
@@ -685,12 +722,35 @@ footer {display: none;}
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 1em;
+    text-decoration: none !important;
 }
 
 .liLeft {
     width: 60% !important;
     float: left;
+    color: darkgreen !important;
+    padding-top: 1.2em !important;
 }
+
+#choose-data .ui-link {color: darkgreen !important; text-decoration: none;}
+
+.liLeft:hover {font-style: italic;}
+
+.liRight {
+    max-width: 1em;
+    max-height: 1em;
+    float: right; 
+    display: block;
+    margin: 0.5em -1.5em 0 0;
+}
+
+a.liRight {
+    background-image: url('../../_assets/img/icons/icon-data.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+a.liRight:hover {background-position: center center !important;}
 
 #choose-data .liRight {
     display: block;
@@ -803,6 +863,8 @@ footer {display: none;}
     background: #008eb7;
 }
 
+#show-data * {font-family: Arial, Verdana, sans-serif !important;}
+
 #map_canvas, #output {
     width: 100% !important;
     height: 100% !important;
@@ -811,4 +873,83 @@ footer {display: none;}
     left: 0;
 }
 
+.txtBold {font-weight: bold !important;}
 .txtCenter {text-align: center;}
+.txtBlack {color: #000 !important;}
+
+.pushDown {
+    margin: 1.8em 0 -4em 0.5em !important;
+}
+
+#btnsProfile {display: none;}
+
+#btnsProfile a {
+    max-width: 25%;
+    margin-right: 30%;
+}
+
+#btnsProfile a:last-child {margin-right: 0;}
+img.icon-profile {display: none;}
+
+#content-profile {
+    width: 90% !important;
+    margin: 5% 0 0 5% !important;
+}
+
+#content-profile h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+#profileEdit {
+    margin-top: 2em;
+    padding-top: 2em;
+    border-top: 1px solid #ccc;
+}
+
+#profileEdit li {margin-bottom: 1em;}
+.txtBold {font-weight: bold;}
+.txtVal {float: right;}
+
+.iwContent {width: 100% !important;}
+
+.iwTitle {
+    color: black;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    margin: 5px 0 20px 0;
+    font-weight: bold;
+}
+
+.iwUL li {
+    list-style-type: circle !important;
+    margin-bottom: 15px;
+}
+
+.contentIW {
+    overflow: hidden !important; 
+    padding-bottom: 1em;
+}
+
+.gm-style-iw {height: inherit !important;}
+
+.btnNavigate {
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background: #009fe3 !important;
+    color: #fff !important;
+    border-radius: 3px;
+    margin-top: 10px !important;
+    display: block !important;
+    text-decoration: none;
+    font-weight: normal !important;
+    font-style: normal !important;
+    box-shadow: none !important;
+}
+
+.btnNavigate:hover {font-style: italic;}
+.btnNavigate:focus, .btnNavigate:active {font-weight: bold;}

@@ -36,21 +36,23 @@
                 <a href="<?php echo $this->url(
                         array('controller'=>'profile'),
                         'default',
-                        true) ?>" class="" data-ajax="false"><?php echo "Hallo " . $this->username; ?></a>
+                        true) ?>" class="btn-primary" data-ajax="false"><?php echo "Hallo " . $this->username; ?></a>
                 <a href="<?php echo $this->url(
                         array('controller'=>'account', 'action' => 'logout'),
                         'default',
-                        true) ?>" class="" data-ajax="false">Afmelden</a>
+                        true) ?>" class="btn" data-ajax="false">Afmelden</a>
              </div>
          </section>
          
          <section id="nav-mobile">         
-         	<a href="#" title="Navigation menu" data-icon="grid" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="menuBtn ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
-                <span class="ui-btn-inner">
-                    <span class="ui-btn-text"></span>
-                    <span class="" data-ajax="false"></span>
-                </span>
-            </a>
+             <div id="navbar-mobile" data-role="navbar">
+                <ul>
+                    <li><a href="#" title="Info" class="ui-btn-active" id="mobileInfo" data-role="button" data-icon="info"></a></li>
+                    <li><a href="#" title="Lijst" id="mobileLijst" data-role="button" data-icon="bars"></a></li>
+                    <li><a href="#" title="Kaart" id="mobileKaart" data-role="button" data-icon="search"></a></li>
+                </ul>
+            </div>
+         </section>
         <?php endif; ?>
     
         <div class="slider-wrapper theme-default">
@@ -65,23 +67,38 @@
     </header>
 
     <div id="menu-mobile">
-        <ul>
-            <li><a href="<?php echo $this->url(
-                array('controller'=>'account', 'action' => 'login'),
-                'default',
-                true) ?>" title="Aanmelden" data-ajax="false" data-role="button" data-icon="check" data-theme="b" class="txtWhite">Aanmelden</a></li>
-            <li><a href="<?php echo $this->url(
-                array('controller'=>'account', 'action' => 'register'),
-                'default',
-                true) ?>" title="Registreren" class="btn" data-ajax="false" data-role="button" data-icon="edit" data-theme="b" class="txtWhite">Registreren</a></li>
-            <li><a href="<?php echo $this->url(
-                array('controller'=>'account', 'action' => 'forgotpassword'),
-                'default',
-                true) ?>" title="Wachtwoord vergeten" class="btn" data-ajax="false" data-role="button" data-icon="alert" data-theme="b" class="txtWhite">Wachtwoord vergeten</a></li>
-                        
-            <li id="mobileDisclaimer"><a href="#" title="Disclaimer" data-role="button" data-inline="true" class="btnFullWidth">Disclaimer</a></li>
-            <li id="mobileClose"><a href="#" title="Sluit venster" data-role="button" data-inline="true" class="btnFullWidth">Sluit venster</a></li>
-        </ul>
+        <?php if($this->loggedin == 0):?>
+            <ul id="mobileOUT">
+                <li><a href="<?php echo $this->url(
+                    array('controller'=>'account', 'action' => 'login'),
+                    'default',
+                    true) ?>" title="Aanmelden" data-ajax="false" data-role="button" data-icon="check" data-theme="b" class="txtWhite">Aanmelden</a></li>
+                <li><a href="<?php echo $this->url(
+                    array('controller'=>'account', 'action' => 'register'),
+                    'default',
+                    true) ?>" title="Registreren" class="btn" data-ajax="false" data-role="button" data-icon="edit" data-theme="b" class="txtWhite">Registreren</a></li>
+                <li><a href="<?php echo $this->url(
+                    array('controller'=>'account', 'action' => 'forgotpassword'),
+                    'default',
+                    true) ?>" title="Wachtwoord vergeten" class="btn" data-ajax="false" data-role="button" data-icon="alert" data-theme="b" class="txtWhite">Wachtwoord vergeten</a></li>
+
+                <li id="mobileDisclaimer"><a href="#" title="Disclaimer" data-role="button" data-inline="true" class="btnFullWidth">Disclaimer</a></li>
+                <li id="mobileClose"><a href="#" title="Sluit venster" data-role="button" data-inline="true" class="btnFullWidth">Sluit venster</a></li>
+            </ul>
+        <?php else: ?>
+            <ul id="mobileIN">
+                <li><a href="<?php echo $this->url(
+                    array('controller'=>'profile'),
+                    'default',
+                    true) ?>" title="Jouw profiel" class="btn" data-ajax="false" data-role="button" data-icon="bars" data-theme="b" class="txtWhite"><?php echo "Hallo " . $this->username; ?></a></li>
+                <li><a href="<?php echo $this->url(
+                    array('controller'=>'account', 'action' => 'logout'),
+                    'default',
+                    true) ?>" title="Aanmelden" data-ajax="false" data-role="button" data-icon="delete" data-theme="b" class="txtWhite">Afmelden</a></li>
+                <li id="mobileDisclaimer"><a href="#" title="Disclaimer" data-role="button" data-inline="true" class="btnFullWidth pushDown">Disclaimer</a></li>
+                <li id="mobileClose"><a href="#" title="Sluit venster" data-role="button" data-inline="true" class="btnFullWidth">Sluit venster</a></li>
+            </ul>
+        <?php endif; ?>
     </div>
     
     <div id="container">
@@ -90,7 +107,7 @@
                 <div id="intro">
                     <h3>Op naar een Groener Gent!</h3>
                     <img src="<?=$this->baseUrl('_assets/img/img-about.png')?>" alt="Over GroenGent"/>
-                    <p>GroenGent biedt veel informatie om je Gentse leven makkelijker te maken! Dankzij GroenGent kan je makkelijk opzoeken in welke gebieden van Gent je het beste gaat picknicken, een uitstap doen, gaat sporten of zélfs solliciteren.</p>
+                    <p>GroenGent biedt veel informatie om je Gentse leven makkelijker te maken! Dankzij GroenGent kan je makkelijk opzoeken in welke gebieden van Gent je het beste gaat picknicken, een uitstap doen, een filmpje oppikken of zélfs waar je het best een kot vindt.</p>
                     <p>Registreer en vergelijk onderstaande data met elkaar!</p>
                 </div>
             
@@ -98,20 +115,16 @@
             <!-- LOGGED IN - Compare -->
             <?php else: ?>
             <div id="compare">
-                <h3>Jouw vergelijking:</h3>
-                <div id="c1">
-                    <h4>Wijken</h4>
-                    <ul id="c1UL"></ul>
-                </div>
-                <div id="c2">
-                    <h4>Data #2</h4>
-                    <ul id="c2UL"></ul>
-                </div>
-                <div id="c3">
-                    <h4>Conclusie</h4>
-                    <p class='oneDS'>Je hebt momenteel <span class='dataSet1'>Wijken</span> geselecteerd. Kies een tweede dataset om een vergelijking te maken.</p>
-                    <p class='twoDS'><span class='dataSet1'>Wijken</span> en <span class='dataSet2'>Bebouwde oppervlakte</span> zijn geselecteerd.</p>
-                </div>
+                <h3>Je hebt parken geselecteerd:</h3>
+                    <div id="cImg">
+                        <img src="<?=$this->baseUrl('_assets/img/compare/icon-parken.png')?>" id="c2" alt="Over GroenGent"/>
+                        <img src="<?=$this->baseUrl('_assets/img/compare/_arrow.png')?>" id="c1" alt="Over GroenGent"/>
+                        <img src="<?=$this->baseUrl('_assets/img/compare/icon-bios.png')?>" id="c3" alt="Over GroenGent"/>
+                    </div>
+                    <div id="compareTxt">
+                        <p>Hmm, een mooie uitstap naar het park, zalig! Met je kleintje een namiddag gaan spelen, of met je partner een wandeling maken.</p>
+                        <p>Als je wil, kan je hierna een filmpje meepikken? Klik hieronder op bioscopen!</p>
+                    </div>
             </div>
             <?php endif; ?>
             
@@ -124,21 +137,19 @@
                         <h3>Weergave</h3>
 
                     <?php endif; ?>
-
+                        
                     <ul id="selData">
-                        <li><span class="liLeft">Wijken</span><span class="liRight"><input type="checkbox" onclick="getData(1)" name="cbxWY" id="cbxWY" checked/></span></li>
-                        <li><span class="liLeft">Bebouwde oppervlakte</span><span class="liRight"><input type="checkbox" onclick="getData(2)" name="cbxBO" id="cbxBO"/></span></li>
-                        <li><span class="liLeft">Speelterreinen</span><span class="liRight"><input type="checkbox" onclick="getData(3)" name="cbxST" id="cbxST"/></span></li>
-                        <li><span class="liLeft">Bevolking/wijk</span><span class="liRight"><input type="checkbox" onclick="getData(4)" name="cbxBW" id="cbxBW"/></span></li>
-                        <li><span class="liLeft">Jeugdwerklocaties</span><span class="liRight"><input type="checkbox" onclick="getData(5)" name="cbxJW" id="cbxJW"/></span></li>
-                        <li><span class="liLeft">Etnische minderheden</span><span class="liRight"><input type="checkbox" onclick="getData(6)" name="cbxEM" id="cbxEM"/></span></li>
-                        <li><span class="liLeft">Werkloosheid > 2 jaar</span><span class="liRight"><input type="checkbox" onclick="getData(7)" name="cbxWL" id="cbxWL"/></span></li>
-                        <li><span class="liLeft">Parken</span><span class="liRight"><input type="checkbox" onclick="getData(8)" name="cbxPa" id="cbxPa"/></span></li>
-                        <li><span class="liLeft">Parkeergarages</span><span class="liRight"><input type="checkbox" onclick="getData(9)" name="cbxPG" id="cbxPG"/></span></li>
-                        <li><span class="liLeft">Parkinglocaties</span><span class="liRight"><input type="checkbox" onclick="getData(10)" name="cbxPL" id="cbxPL"/></span></li>
-                        <li><span class="liLeft">Bioscopen</span><span class="liRight"><input type="checkbox" onclick="getData(11)" name="cbxCI" id="cbxCI"/></span></li>
-                        <li><span class="liLeft">Sportcentra</span><span class="liRight"><input type="checkbox" onclick="getData(12)" name="cbxSC" id="cbxSC"/></span></li>
-                        <li><span class="liLeft">Bibliotheken</span><span class="liRight"><input type="checkbox" onclick="getData(13)" name="cbxBI" id="cbxBI"/></span></li>
+                        <li id="liParken"><span class="liLeft"><a href="#" title="Parken" onclick="getData(1)">Parken</a></span><a href="http://localhost/GroenGentAPI/index.php/datasets/1" title="Bekijk data" data-role="button" class="liRight btn" target="_blank"></a></li>
+                        <li id="liParking"><span class="liLeft"><a href="#" title="Parkings" onclick="getData(2)">Parkings</a></span><a href="http://localhost/GroenGentAPI/index.php/datasets/2" title="Bekijk data" data-role="button" class="liRight btn" target="_blank"></a></li>
+                        <li id="liBibs"><span class="liLeft"><a href="#" title="Bibliotheken" onclick="getData(3)">Bibliotheken</a></span><a href="http://localhost/GroenGentAPI/index.php/datasets/3" title="Bekijk data" data-role="button" class="liRight btn" target="_blank"></a></li>
+                        <li id="liBios"><span class="liLeft"><a href="#" title="Bioscopen" onclick="getData(4)">Bioscopen</a></span><a href="http://localhost/GroenGentAPI/index.php/datasets/4" title="Bekijk data" data-role="button" class="liRight btn" target="_blank"></a></li>
+                        <li id="liApoth"><span class="liLeft"><a href="#" title="Apotheken" onclick="getData(5)">Apotheken</a></span><a href="http://localhost/GroenGentAPI/index.php/datasets/5" title="Bekijk data" data-role="button" class="liRight btn" target="_blank"></a></li>
+                        <li id="liGZCentra"><span class="liLeft"><a href="#" title="Gezondheidscentra" onclick="getData(6)">Gezondheidscentra</a></span><a href="http://localhost/GroenGentAPI/index.php/datasets/6" title="Bekijk data" data-role="button" class="liRight btn" target="_blank"></a></li>
+                        <li id="liDArtsen"><span class="liLeft"><a href="#" title="Dierenartsen" onclick="getData(7)">Dierenartsen</a></span><a href="http://localhost/GroenGentAPI/index.php/datasets/7" title="Bekijk data" data-role="button" class="liRight btn" target="_blank"></a></li>
+                        <li id="liZhuizen"><span class="liLeft"><a href="#" title="Ziekenhuizen" onclick="getData(8)">Ziekenhuizen</a></span><a href="http://localhost/GroenGentAPI/index.php/datasets/8" title="Bekijk data" data-role="button" class="liRight btn" target="_blank"></a></li>
+                        <li id="liBScholen"><span class="liLeft"><a href="#" title="Basisscholen" onclick="getData(9)">Basisscholen</a></span><a href="http://localhost/GroenGentAPI/index.php/datasets/9" title="Bekijk data" data-role="button" class="liRight btn" target="_blank"></a></li>
+                        <li id="liMScholen"><span class="liLeft"><a href="#" title="Secundaire schoole" onclick="getData(10)">Middelbare scholen</a></span><a href="http://localhost/GroenGentAPI/index.php/datasets/10" title="Bekijk data" data-role="button" class="liRight btn" target="_blank"></a></li>
+                        <li id="liKoten"><span class="liLeft"><a href="#" title="Kotzones" onclick="getData(11)">Kotzones</a></span><a href="http://localhost/GroenGentAPI/index.php/datasets/11" title="Bekijk data" data-role="button" class="liRight btn" target="_blank"></a></li>
                     </ul>
                 </div>
                 <div id="show-data" class="ui-block-b">
@@ -156,7 +167,7 @@
         </footer>
         
         <div id="view-disclaimer">     
-            <h2 data-role="header" class="ui-header ui-bar-a ui-title" role="banner" role="heading" aria-level="1">Disclaimer</h2><span class="closeBtn btn">X</span>
+            <h2 data-role="header" class="ui-header ui-bar-a ui-title sidePadding" role="banner" role="heading" aria-level="1">Disclaimer</h2><span class="closeBtn btn">X</span>
         
             <p>Deze web-app werd gebouwd in opdracht van de Arteveldehogeschool.</p>
             
@@ -181,4 +192,3 @@
    <div id="overlay"></div>
 <script type="text/javascript"
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqsjbo0JTyqexEzIBOYcolZlo5SBUGrHc&sensor=true"></script>
-<script src="/statghent/public/_scripts/js/geolocation.js"></script>
